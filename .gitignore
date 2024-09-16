@@ -1,0 +1,8 @@
+node_modules/
+
+.env
+*.log
+
+# Ignore arquivos de compilação e caches específicos
+dist/
+build/
