@@ -1,22 +1,22 @@
 import React from 'react';
-import { Button, View } from 'react-native';
-import { useRouter } from 'expo-router';
+import { View, Text } from 'react-native';
+import { Link } from 'expo-router';
 
 // Definindo a interface para as props
 interface BotaoIndexProps {
     title: string;
-    route: string; // Nova prop para definir a rota
+    route: string; // Define a rota como string
 }
 
 const BotaoIndex: React.FC<BotaoIndexProps> = ({ title, route }) => {
-  const router = useRouter();
-
   return (
     <View style={{ margin: 10 }}>
-      <Button 
-        title={title} 
-        onPress={() => router.push(route)} // Redireciona para a rota
-      />
+      {/* Usando o Link com o caminho da rota - CONSERTAR*/}
+      <Link href={route}>
+        <View style={{ padding: 10, backgroundColor: '#007bff', borderRadius: 5 }}>
+          <Text style={{ color: '#fff', textAlign: 'center' }}>{title}</Text>
+        </View>
+      </Link>
     </View>
   );
 };
