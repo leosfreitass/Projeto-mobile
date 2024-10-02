@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity } from 'react-native';
-import { styles } from './HeaderStyles'; // Importa os estilos
+import { styles } from './HeaderStyles'; 
 
 const Header = () => {
   return (

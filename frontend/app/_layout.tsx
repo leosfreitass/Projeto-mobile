@@ -9,7 +9,7 @@ export default function RootLayout() {
     
       <Stack>
         <Stack.Screen name="index" />
-        <Stack.Screen name="cadastrar" /> {/* Certifique-se que a rota está correta */}
+        <Stack.Screen name="cadastrar" />
       </Stack>
     </>
   );
