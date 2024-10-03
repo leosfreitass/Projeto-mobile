@@ -2,7 +2,6 @@ import * as React from 'react';
 import { Pressable, View, Text } from "react-native";
 import { styles } from './indexStyles';
 import { Link } from 'expo-router';
-import BotaoIndex from '@/components/BotaoIndex';
 
 export default function Index() {
   return (
