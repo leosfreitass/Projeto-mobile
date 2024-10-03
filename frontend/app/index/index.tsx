@@ -9,7 +9,7 @@ export default function Index() {
 
       <View style={styles.buttonContainer}>
 
-        <Link href= "/cadastrar" asChild>
+        <Link href= "/cadastrar">
           <Pressable style={styles.buttonIndex}>
             <Text style={styles.buttonTextIndex}>Cadastrar</Text>
           </Pressable>
