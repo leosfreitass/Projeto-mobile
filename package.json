@@ -1,7 +1,0 @@
-{
-  "dependencies": {
-    "express": "^4.21.0",
-    "react-native": "^0.75.4",
-    "sqlite3": "^5.1.7"
-  }
-}
