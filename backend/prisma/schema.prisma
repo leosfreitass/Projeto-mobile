@@ -19,7 +19,6 @@ model Dog {
   breed     String
   age       Int?
   extraInfo String?
-  ownerId   String?
   Owner     Owner?  @relation(fields: [ownerCpf], references: [cpf])
   ownerCpf  String?
 }
@@ -29,5 +28,5 @@ model Owner {
   name            String
   address         String
   telephoneNumber String
-  dogs            Dog[]
+  Dog             Dog[]
 }
