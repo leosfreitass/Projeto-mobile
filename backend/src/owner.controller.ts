@@ -1,19 +1,14 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { OwnerService } from './owner.service';
-import { Owner as OwnerModel, Dog as DogModel } from '@prisma/client';
+import { Owner as OwnerModel } from '@prisma/client';
 
 @Controller()
-export class AppController {
+export class OwnerController {
   constructor(private readonly ownerService: OwnerService) {}
 
-  @Get('owner/:id')
-  async getOwnerById(@Param('id') id: string): Promise<OwnerModel> {
-    return this.ownerService.owner({ id: String(id) });
-  }
-
-  // Does nothing at the moment because dog.service.ts does not exist yet.
-  async getDogsByOwner(): Promise<DogModel[]> {
-    return;
+  @Get('owner/:cpf')
+  async getOwnerByCpf(@Param('cpf') cpf: string): Promise<OwnerModel> {
+    return this.ownerService.owner({ cpf: String(cpf) });
   }
 
   @Post('owner')

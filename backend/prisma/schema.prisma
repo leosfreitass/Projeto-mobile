@@ -19,7 +19,6 @@ model Dog {
   breed     String
   age       Int?
   extraInfo String?
-  locatedAt String
   Owner     Owner?  @relation(fields: [ownerCpf], references: [cpf])
   ownerCpf  String?
 }
