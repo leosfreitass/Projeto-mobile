@@ -1,15 +1,13 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from './prisma.service';
 import { Owner, Prisma } from '@prisma/client';
+import { PrismaService } from 'src/prisma.service';
 
 @Injectable()
-export class OwnerService {
+export class OwnersService {
   constructor(private prisma: PrismaService) {}
 
-  async owner(
-    ownerWhereUniqueInput: Prisma.OwnerWhereUniqueInput,
-  ): Promise<Owner | null> {
-    return this.prisma.owner.findUnique({ where: ownerWhereUniqueInput });
+  async owner(where: Prisma.OwnerWhereUniqueInput): Promise<Owner | null> {
+    return this.prisma.owner.findUnique({ where });
   }
 
   async owners(params: {
@@ -50,5 +48,13 @@ export class OwnerService {
     return this.prisma.owner.delete({
       where,
     });
+  }
+
+  async selectFromOwner(params: {
+    where: Prisma.OwnerWhereUniqueInput;
+    select: object;
+  }): Promise<object> {
+    const { where, select } = params;
+    return this.prisma.owner.findUnique({ where, select });
   }
 }

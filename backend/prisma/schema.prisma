@@ -14,19 +14,23 @@ datasource db {
 }
 
 model Dog {
-  id        String  @id @default(uuid())
+  id        String   @id @default(uuid())
   name      String
   breed     String
   age       Int?
   extraInfo String?
-  Owner     Owner?  @relation(fields: [ownerCpf], references: [cpf])
-  ownerCpf  String?
+  updatedAt DateTime @updatedAt
+  owner     Owner    @relation(fields: [ownerId], references: [id])
+  ownerId   String
 }
 
 model Owner {
-  cpf             String @id
+  id              String   @id @default(uuid())
+  cpf             String   @unique
   name            String
+  email           String?
   address         String
   telephoneNumber String
+  updatedAt       DateTime @updatedAt
   dogs            Dog[]
 }
