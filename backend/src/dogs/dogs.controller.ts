@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+} from '@nestjs/common';
 import { Dog as DogModel } from '@prisma/client';
 import { DogsService } from './dogs.service';
 
@@ -20,18 +28,43 @@ export class DogController {
       breed: string;
       age?: number;
       extraInfo?: string;
+      locatedAt: number;
     },
   ): Promise<DogModel> {
-    const { name, breed, age, extraInfo } = dogData;
+    const { name, breed, age, extraInfo, locatedAt } = dogData;
     const ownerId = tempOwnerId;
     return this.dogService.createDog({
       name,
       breed,
       age,
       extraInfo,
+      locatedAt,
       owner: {
         connect: { id: ownerId },
       },
     });
+  }
+
+  @Put('dog/:id')
+  async updateDog(
+    @Param('id')
+    id: string,
+    @Body()
+    dogData: {
+      name: string;
+      breed: string;
+      age?: number;
+      extraInfo?: string;
+    },
+  ): Promise<DogModel> {
+    return this.dogService.updateDog({
+      where: { id: String(id) },
+      data: dogData,
+    });
+  }
+
+  @Delete('dog/:id')
+  async deleteDog(@Param('id') id: string): Promise<DogModel> {
+    return this.dogService.deleteDog({ id: String(id) });
   }
 }
