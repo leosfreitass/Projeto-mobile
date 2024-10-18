@@ -64,14 +64,15 @@ export class OwnerController {
     return this.ownerService.deleteOwner({ id: String(id) });
   }
 
-  // @Get('owner/:cpf/dogs')
-  // async getDogsByOwner(@Param('cpf') cpf: string): Promise<object> {
-  //   return this.ownerService.selectFromOwner({
-  //     where: { cpf: String(cpf) },
-  //     select: {
-  //       name: true,
-  //       dogs: true,
-  //     },
-  //   });
-  // }
+  @Get('owner/:id/dogs')
+  async getDogsByOwner(@Param('id') id: string): Promise<object> {
+    return this.ownerService.selectFromOwner({
+      where: { id: String(id) },
+      select: {
+        name: true,
+        cpf: true,
+        dogs: true,
+      },
+    });
+  }
 }

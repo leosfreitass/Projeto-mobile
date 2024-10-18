@@ -19,6 +19,7 @@ model Dog {
   breed     String
   age       Int?
   extraInfo String?
+  locatedAt Int
   updatedAt DateTime @updatedAt
   owner     Owner    @relation(fields: [ownerId], references: [id])
   ownerId   String
