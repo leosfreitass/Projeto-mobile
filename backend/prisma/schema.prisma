@@ -32,6 +32,7 @@ model Owner {
   email           String?
   address         String
   telephoneNumber String
+  paymentMethod   String
   updatedAt       DateTime @updatedAt
   dogs            Dog[]
 }

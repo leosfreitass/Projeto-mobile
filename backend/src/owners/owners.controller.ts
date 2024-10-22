@@ -37,6 +37,7 @@ export class OwnerController {
       name: string;
       address: string;
       telephoneNumber: string;
+      paymentMethod: string;
     },
   ): Promise<OwnerModel> {
     return this.ownerService.createOwner(ownerData);
