@@ -7,6 +7,7 @@ export default function RootLayout() {
       <Stack>
         <Stack.Screen name="index" />
         <Stack.Screen name="cadastrar" />
+        <Stack.Screen name="/CadastroCachorro" />
       </Stack>
 
   );

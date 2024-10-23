@@ -1,8 +1,11 @@
 import * as React from 'react';
 import { View, Text, TextInput, Pressable } from "react-native";
 import { styles } from './cadastroStyle';
-
+import { useNavigation } from '@react-navigation/native';
+import { Link }  from 'expo-router'
 export default function Cadastro() {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.container}>
 
@@ -10,8 +13,8 @@ export default function Cadastro() {
       <View style={styles.inputContainer}>
         <Text style={styles.label}>Nome do tutor</Text>
         <TextInput 
-        placeholder="Digite o nome completo"
-        style={styles.input} 
+          placeholder="Digite o nome completo"
+          style={styles.input} 
         />
       </View>
 
@@ -44,12 +47,11 @@ export default function Cadastro() {
 
       {/*botao de avançar para próxima tela*/}
       <View style={styles.inputContainer}>
-        {/*Ao invés de usar <Button [...] />, utilizar Pressable ou TouchableOpacity*/}
-        <Pressable style={styles.button}>
-          <Text style={styles.buttonText}>Avançar</Text>
-        </Pressable>
-
-        
+      <Link href= "./CadastroCachorro">
+          <Pressable >
+            <Text >Cadastrar</Text>
+          </Pressable>
+        </Link> 
       </View>
 
     </View>
