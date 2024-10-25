@@ -3,15 +3,16 @@ import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
   container: {
         flex: 1,
-        //alignItems:'center', CENTRALIZAR?
+
     },
 
     inputContainer: {
         marginBottom: 1,
+        alignItems:'center',
     },
 
     label: {
-        marginBottom: 20,     // Espaço entre o label e o campo de input
+        marginBottom: 10,     // Espaço entre o label e o campo de input
         fontSize: 20,        // Tamanho da fonte do label
         fontWeight: 'bold',  // Negrito no label (opcional)
         color: '#000',       // Cor do texto do label
