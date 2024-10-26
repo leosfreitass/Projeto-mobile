@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { View, Text, TextInput, Pressable } from "react-native";
 import { styles } from './cadastroStyle';
-import { useNavigation } from '@react-navigation/native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import CadastroCachorro from '../cadastrarCachorro/cadastroCachorro';
 
