@@ -18,6 +18,17 @@ export const styles = StyleSheet.create({
         color: '#000',       // Cor do texto do label
     },
 
+    opcao: {
+        height: 100,               // Aumenta a altura do campo para parecer um retângulo
+        borderWidth: 1,
+        borderColor: '#000',
+        borderRadius: 10,          // Mantém bordas levemente arredondadas, ajuste para mais quadrado se preferir
+        paddingLeft: 10,          // Adiciona espaço para o texto dentro do campo
+        width: '80%',            // Ocupa 100% da largura disponível
+        paddingTop: 15,
+        textAlignVertical: 'top', 
+        marginBottom: 10,
+    },
     input: {
         height: 40,
         borderWidth: 1,
@@ -35,6 +46,8 @@ export const styles = StyleSheet.create({
         borderRadius: 40,
     },
 
+
+    
     buttonText: {
         color: '#fff',
     }
