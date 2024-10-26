@@ -34,13 +34,14 @@ export default function CadastroCachorro() {
 
       {/* Tabela com informações sobre o cachorro */}
       <View style={styles.inputContainer}>
-        <Text style={styles.label}>Tabela de Informações</Text>
-        {/* Aqui você pode criar uma tabela com informações adicionais */}
-        <Text>Cor: Branco</Text>
-        <Text>Peso: 15kg</Text>
-        <Text>Saúde: Vacinas em dia</Text>
-        {/* Adicione mais campos conforme necessário */}
-      </View>
+    <Text style={styles.label}>Tabela de Informações</Text>
+    <TextInput 
+      placeholder={`Digite Informações a mais sobre o Pet\nEx:\n- Remédios que pode tomar.\n- Hábitos que ele pode ter.`} 
+      style={styles.opcao} 
+      multiline={true}         // Permite múltiplas linhas
+      textAlignVertical="top"  // Alinha o texto no topo do campo
+    />
+</View> 
 
       {/* Botão para salvar as informações */}
       <View style={styles.inputContainer}>
