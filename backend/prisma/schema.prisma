@@ -25,6 +25,8 @@ model Dog {
   ownerId   String
 }
 
+// adicionar método de pagamento paymentMethod String
+
 model Owner {
   id              String   @id @default(uuid())
   cpf             String   @unique

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { View, Text, TextInput, Pressable } from "react-native";
-import { styles } from './cadastroCachorroStyle';
+import { styles } from '../cadastrarTutor/cadastroStyle';
 
 export default function CadastroCachorro() {
   return (

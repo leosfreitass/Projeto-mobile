@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { View, Text, TextInput, Pressable } from "react-native";
 import { styles } from './cadastroStyle';
-import { useNavigation } from '@react-navigation/native';
-import { Link }  from 'expo-router'
-export default function Cadastro() {
-  const navigation = useNavigation();
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import CadastroCachorro from '../cadastrarCachorro/cadastroCachorro';
 
+
+export default function Cadastro({ navigation }:any) {
   return (
     <View style={styles.container}>
 
@@ -47,13 +47,11 @@ export default function Cadastro() {
 
       {/*botao de avançar para próxima tela*/}
       <View style={styles.inputContainer}>
-      <Link href= "./CadastroCachorro">
-          <Pressable >
-            <Text >Cadastrar</Text>
-          </Pressable>
-        </Link> 
+        <TouchableOpacity style={styles.button}
+        onPress={() =>navigation.navigate('Cadastro Cachorro')}>
+          <Text style={styles.buttonText}>Avançar</Text>
+        </TouchableOpacity> 
       </View>
-
     </View>
   );
 }
