@@ -7,21 +7,21 @@ const CardBaia = () => {
         <View style={styles.cardForma}>
             {/*titulo card*/}
             <View style={styles.cardHeader}>
-                <Text style={styles.cardHeaderText}>Baia x</Text>
+                <Text style={styles.cardHeaderText}>BAIA x</Text>
             </View>
 
             {/*informações da baia */}
             <View style={styles.cardInfo}> 
-                <Text>nome do cachorro: </Text>
+                <Text style={styles.labelInfo}>nome do cachorro: </Text>
                 <Text>Cachorro 1</Text>
 
-                <Text>data de ingresso: </Text>
+                <Text style={styles.labelInfo}>data de ingresso: </Text>
                 <Text>dd/mm/aaaa</Text>
 
-                <Text>Nome do tutor: </Text>
+                <Text style={styles.labelInfo}>Nome do tutor: </Text>
                 <Text>Fulano 1</Text>
 
-                <Text>Observações: </Text>
+                <Text style={styles.labelInfo}>Observações: </Text>
                 <Text>info importante</Text>
             </View>
         </View>
