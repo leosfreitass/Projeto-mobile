@@ -35,8 +35,10 @@ export class OwnerController {
     ownerData: {
       cpf: string;
       name: string;
+      email: string;
       address: string;
       telephoneNumber: string;
+      paymentMethod: string;
     },
   ): Promise<OwnerModel> {
     return this.ownerService.createOwner(ownerData);
