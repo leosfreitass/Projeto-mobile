@@ -8,5 +8,3 @@ WORKDIR /app/frontend
 RUN npm install
 
 EXPOSE 8081
-
-ENTRYPOINT [ "npx", "expo", "start" ]

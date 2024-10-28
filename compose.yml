@@ -2,20 +2,35 @@ name: projeto-mobile
 
 services:
   backend:
-    image: backend
     build:
-      context: backend
+      context: ./backend
       dockerfile: backend.dockerfile
-    
+    container_name: backend
+    networks:
+      - mobile
+    ports:
+      - "3000:3000"
+    command: npm run start:dev
+    restart: on-failure
+
   frontend:
-    image: frontend
-    build: 
-      context: frontend
+    build:
+      context: ./frontend
       dockerfile: frontend.dockerfile
+    container_name: frontend
+    ports:
+      - "8081:8081"
+    networks:
+      - mobile
+    restart: unless-stopped
+    command: npx expo start
     develop:
       watch:
         - path: ./frontend
           action: sync
           target: /app/frontend
-          ignore: 
+          ignore:
             - node_modules/
+
+networks:
+  mobile:
