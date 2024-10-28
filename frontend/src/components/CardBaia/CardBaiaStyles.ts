@@ -4,8 +4,8 @@ export const styles = StyleSheet.create({
 
 
     cardForma:{
-        width:360,
-        height:340,
+        width:260,
+        height:240,
         backgroundColor:'#F4F1F1',
         borderWidth: 3,
         borderRadius: 5,       
@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
     },
 
     cardHeader:{
-        width: 354,
+        width: 254,
         height: 50,
         backgroundColor:'#777070',
         borderBottomWidth: 2,
@@ -21,13 +21,19 @@ export const styles = StyleSheet.create({
     },
 
     cardHeaderText:{
-        fontSize: 34,        
+        fontSize: 34,
+        fontWeight: "bold",       
 
     },
 
     cardInfo:{
         width: 360,
         height: 300,
+
+    },
+
+    labelInfo:{
+        fontWeight: "bold",
 
     }
 
