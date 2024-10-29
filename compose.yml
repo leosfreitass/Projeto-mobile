@@ -23,7 +23,7 @@ services:
     networks:
       - mobile
     restart: unless-stopped
-    command: npx expo start
+    command: npx expo start --web
     develop:
       watch:
         - path: ./frontend

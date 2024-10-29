@@ -1,16 +1,18 @@
 import { Injectable } from '@nestjs/common';
 import { Owner, Prisma } from '@prisma/client';
-import { PrismaService } from 'src/prisma.service';
+import { CreateOwnerDto } from './dto/create-owner.dto';
+import { UpdateOwnerDto } from './dto/update-owner.dto';
+import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
-export class OwnersService {
+export class OwnerService {
   constructor(private prisma: PrismaService) {}
 
-  async owner(where: Prisma.OwnerWhereUniqueInput): Promise<Owner | null> {
+  async findOne(where: Prisma.OwnerWhereUniqueInput): Promise<Owner | null> {
     return this.prisma.owner.findUnique({ where });
   }
 
-  async owners(params: {
+  async findAll(params: {
     skip?: number;
     take?: number;
     cursor?: Prisma.OwnerWhereUniqueInput;
@@ -27,20 +29,17 @@ export class OwnersService {
     });
   }
 
-  async createOwner(data: Prisma.OwnerCreateInput): Promise<Owner> {
-    return this.prisma.owner.create({
-      data,
-    });
+  async createOwner(createOwnerDto: CreateOwnerDto): Promise<Owner> {
+    return this.prisma.owner.create({ data: createOwnerDto });
   }
 
-  async updateOwner(params: {
-    where: Prisma.OwnerWhereUniqueInput;
-    data: Prisma.OwnerUpdateInput;
-  }): Promise<Owner> {
-    const { where, data } = params;
+  async updateOwner(
+    id: string,
+    updateOwnerDto: UpdateOwnerDto,
+  ): Promise<Owner> {
     return this.prisma.owner.update({
-      data,
-      where,
+      where: { id },
+      data: updateOwnerDto,
     });
   }
 
