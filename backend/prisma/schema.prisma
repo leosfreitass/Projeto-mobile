@@ -25,8 +25,6 @@ model Dog {
   ownerId   String
 }
 
-// adicionar método de pagamento paymentMethod String
-
 model Owner {
   id              String   @id @default(uuid())
   cpf             String   @unique
@@ -34,6 +32,7 @@ model Owner {
   email           String?
   address         String
   telephoneNumber String
+  paymentMethod   String?
   updatedAt       DateTime @updatedAt
   dogs            Dog[]
 }
