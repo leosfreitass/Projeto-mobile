@@ -6,12 +6,11 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+
+  
   buttonContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    //width: '30%',
-    //height: '20%',
-    marginVertical: 10, // Adiciona espaço entre as linhas
+    //marginVertical: 10, // Adiciona espaço entre as linhas
   },
 
   buttonIndex: {
@@ -21,17 +20,15 @@ export const styles = StyleSheet.create({
     marginVertical: 10, // Adiciona espaço entre as linhas
     marginHorizontal: 5,
     flexDirection: 'row',
-    borderRadius: 2,
-  
+    borderRadius: 10,
+    justifyContent:'center'  
 
   },
 
   buttonTextIndex: {
     color: '#fff',
-    padding: 50, //arrumar
-    
-    
-
+    marginTop: '50%',
+        
   },
 
 

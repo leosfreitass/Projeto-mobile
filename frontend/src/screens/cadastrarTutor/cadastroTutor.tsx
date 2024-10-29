@@ -6,6 +6,7 @@ import axios from "axios"; // Para fazer a requisição HTTP
 
 export default function Cadastro({ navigation }: any) {
   const [nome, setNome] = React.useState("");
+  const [cpf, setCpf] = React.useState("");
   const [endereco, setEndereco] = React.useState("");
   const [telefone, setTelefone] = React.useState("");
   const [pagamento, setPagamento] = React.useState("");
@@ -15,9 +16,10 @@ export default function Cadastro({ navigation }: any) {
     try {
       await axios.post("http://localhost:3000/addOwner", {
         name: nome,
+        cpf: cpf,
         address: endereco,
         telephoneNumber: telefone,
-        cpf: pagamento, // Supondo que o campo 'pagamento' seja o CPF
+        paymentMethod: pagamento,
       });
       navigation.navigate("Cadastro Cachorro");
     } catch (error) {
@@ -27,6 +29,7 @@ export default function Cadastro({ navigation }: any) {
 
   return (
     <View style={styles.container}>
+
       {/*nome do tutor */}
       <View style={styles.inputContainer}>
         <Text style={styles.label}>Nome do tutor</Text>
@@ -35,6 +38,17 @@ export default function Cadastro({ navigation }: any) {
           style={styles.input}
           value={nome}
           onChangeText={setNome}
+        />
+      </View>
+
+      {/*cpf do tutor */}
+      <View style={styles.inputContainer}>
+        <Text style={styles.label}>CPF</Text>
+        <TextInput
+          placeholder="Digite o cpf"
+          style={styles.input}
+          value={cpf}
+          onChangeText={setCpf}
         />
       </View>
 
@@ -72,11 +86,10 @@ export default function Cadastro({ navigation }: any) {
       </View>
 
       {/*botao de avançar para próxima tela*/}
-      <View style={styles.inputContainer}>
+      <View style={styles.buttonContainer}>
         <TouchableOpacity
           style={styles.button}
-          onPress={handleCadastro}
-        >
+          onPress={() =>navigation.navigate('Cadastro Cachorro')}>
           <Text style={styles.buttonText}>Avançar</Text>
         </TouchableOpacity>
       </View>

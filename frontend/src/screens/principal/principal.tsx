@@ -8,6 +8,8 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 export default function Index({ navigation, route }:any) {
     return (
       <View style={styles.container}>
+
+        {/*adicionar imagem nos botões*/}
   
         <View style={styles.buttonContainer}>
           <TouchableOpacity style={styles.buttonIndex}
@@ -22,16 +24,13 @@ export default function Index({ navigation, route }:any) {
         </View>
   
         <View style={styles.buttonContainer}>
-  
           <Pressable style={styles.buttonIndex}>
             <Text style={styles.buttonTextIndex}>Cadastrados</Text>
           </Pressable> 
           
-  
           <Pressable style={styles.buttonIndex}>
             <Text style={styles.buttonTextIndex}>Financeiro</Text>
           </Pressable>
-  
         </View>
   
       </View>
