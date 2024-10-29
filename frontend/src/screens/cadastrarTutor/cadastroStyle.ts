@@ -47,6 +47,17 @@ export const styles = StyleSheet.create({
 
     },
 
+    pickerContainer: {
+        borderColor: "#000",
+        borderWidth: 1,
+        borderRadius: 3,
+      },
+      
+      picker: {
+        height: 50,
+        width: "100%",
+      },
+
     button: {
         alignItems:'center', // Centraliza o texto no eixo horizontal
         justifyContent: 'center',  // Centraliza o texto no eixo vertical
@@ -54,6 +65,8 @@ export const styles = StyleSheet.create({
         height: 50,
         width: 150,
         borderRadius: 40,
+        alignSelf: "center",
+        margin: 20
     },
     
     buttonText: {

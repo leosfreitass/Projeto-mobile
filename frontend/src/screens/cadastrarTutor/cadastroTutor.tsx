@@ -89,7 +89,7 @@ export default function Cadastro({ navigation }: any) {
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           style={styles.button}
-          onPress={() =>navigation.navigate('Cadastro Cachorro')}>
+          onPress={handleCadastro}>
           <Text style={styles.buttonText}>Avançar</Text>
         </TouchableOpacity>
       </View>
