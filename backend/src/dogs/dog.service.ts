@@ -1,18 +1,20 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma, Dog } from '@prisma/client';
-import { PrismaService } from 'src/prisma.service';
+import { PrismaService } from 'src/prisma/prisma.service';
+import { CreateDogDto } from './dto/create-dog.dto';
+import { UpdateDogDto } from './dto/update-dog.dto';
 
 @Injectable()
-export class DogsService {
+export class DogService {
   constructor(private prisma: PrismaService) {}
 
-  async dog(
+  async findOne(
     dogWhereUniqueInput: Prisma.DogWhereUniqueInput,
   ): Promise<Dog | null> {
     return this.prisma.dog.findUnique({ where: dogWhereUniqueInput });
   }
 
-  async dogs(params: {
+  async findAll(params: {
     skip?: number;
     take?: number;
     cursor?: Prisma.DogWhereUniqueInput;
@@ -29,20 +31,14 @@ export class DogsService {
     });
   }
 
-  async createDog(data: Prisma.DogCreateInput): Promise<Dog> {
-    return this.prisma.dog.create({
-      data,
-    });
+  async createDog(createDogDto: CreateDogDto): Promise<Dog> {
+    return this.prisma.dog.create({ data: createDogDto });
   }
 
-  async updateDog(params: {
-    where: Prisma.DogWhereUniqueInput;
-    data: Prisma.DogUpdateInput;
-  }): Promise<Dog> {
-    const { where, data } = params;
+  async updateDog(id: string, updateDogDto: UpdateDogDto): Promise<Dog> {
     return this.prisma.dog.update({
-      data,
-      where,
+      where: { id },
+      data: updateDogDto,
     });
   }
 

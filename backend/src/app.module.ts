@@ -1,14 +1,14 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { PrismaService } from './prisma.service';
-import { DogController } from './dogs/dogs.controller';
-import { OwnerController } from './owners/owners.controller';
-import { OwnersService } from './owners/owners.service';
-import { DogsService } from './dogs/dogs.service';
+import { PrismaService } from './prisma/prisma.service';
+import { DogController } from './dogs/dog.controller';
+import { DogService } from './dogs/dog.service';
+import { OwnerModule } from './owners/owner.module';
+import { PrismaModule } from './prisma/prisma.module';
 
 @Module({
-  imports: [ConfigModule.forRoot()],
-  controllers: [DogController, OwnerController],
-  providers: [DogsService, OwnersService, PrismaService],
+  imports: [ConfigModule.forRoot(), OwnerModule, PrismaModule],
+  controllers: [DogController],
+  providers: [DogService, PrismaService],
 })
 export class AppModule {}

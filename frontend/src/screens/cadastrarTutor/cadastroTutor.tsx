@@ -1,26 +1,25 @@
-import * as React from 'react';
+import * as React from "react";
 import { View, Text, TextInput, Pressable } from "react-native";
-import { styles } from './cadastroStyle';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import axios from 'axios'; // Para fazer a requisição HTTP
+import { styles } from "./cadastroStyle";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import axios from "axios"; // Para fazer a requisição HTTP
 
+export default function Cadastro({ navigation }: any) {
+  const [nome, setNome] = React.useState("");
+  const [endereco, setEndereco] = React.useState("");
+  const [telefone, setTelefone] = React.useState("");
+  const [pagamento, setPagamento] = React.useState("");
 
-export default function Cadastro({ navigation }:any) {
-  const [nome, setNome] = React.useState('');
-  const [endereco, setEndereco] = React.useState('');
-  const [telefone, setTelefone] = React.useState('');
-  const [pagamento, setPagamento] = React.useState('');
-
-   // Função para enviar dados para o backend
-   const handleCadastro = async () => {
+  // Função para enviar dados para o backend
+  const handleCadastro = async () => {
     try {
-      await axios.post('http://localhost:3000/addOwner', {
+      await axios.post("http://localhost:3000/addOwner", {
         name: nome,
         address: endereco,
         telephoneNumber: telefone,
         cpf: pagamento, // Supondo que o campo 'pagamento' seja o CPF
       });
-      navigation.navigate('Cadastro Cachorro');
+      navigation.navigate("Cadastro Cachorro");
     } catch (error) {
       console.error("Erro ao cadastrar o tutor:", error);
     }
@@ -28,11 +27,10 @@ export default function Cadastro({ navigation }:any) {
 
   return (
     <View style={styles.container}>
-
       {/*nome do tutor */}
       <View style={styles.inputContainer}>
         <Text style={styles.label}>Nome do tutor</Text>
-        <TextInput 
+        <TextInput
           placeholder="Digite o nome completo"
           style={styles.input}
           value={nome}
@@ -43,8 +41,8 @@ export default function Cadastro({ navigation }:any) {
       {/*endereço */}
       <View style={styles.inputContainer}>
         <Text style={styles.label}>Endereço</Text>
-        <TextInput 
-          placeholder="Digite o endereço" 
+        <TextInput
+          placeholder="Digite o endereço"
           style={styles.input}
           value={endereco}
           onChangeText={setEndereco}
@@ -54,8 +52,8 @@ export default function Cadastro({ navigation }:any) {
       {/*telefone */}
       <View style={styles.inputContainer}>
         <Text style={styles.label}>Telefone</Text>
-        <TextInput 
-          placeholder="Digite o telefone" 
+        <TextInput
+          placeholder="Digite o telefone"
           style={styles.input}
           value={telefone}
           onChangeText={setTelefone}
@@ -65,20 +63,22 @@ export default function Cadastro({ navigation }:any) {
       {/*pagamento */}
       <View style={styles.inputContainer}>
         <Text style={styles.label}>Método de pagamento</Text>
-        <TextInput 
-          placeholder="Digite o pagamento" 
+        <TextInput
+          placeholder="Digite o pagamento"
           style={styles.input}
-          value={ pagamento }
+          value={pagamento}
           onChangeText={setPagamento}
         />
       </View>
 
       {/*botao de avançar para próxima tela*/}
       <View style={styles.inputContainer}>
-        <TouchableOpacity style={styles.button}
-        onPress={ handleCadastro }>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={handleCadastro}
+        >
           <Text style={styles.buttonText}>Avançar</Text>
-        </TouchableOpacity> 
+        </TouchableOpacity>
       </View>
     </View>
   );
