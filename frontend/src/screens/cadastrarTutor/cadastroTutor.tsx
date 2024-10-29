@@ -1,6 +1,7 @@
 import * as React from "react";
 import { View, Text, TextInput, Pressable } from "react-native";
 import { styles } from "./cadastroStyle";
+import { Picker } from "@react-native-picker/picker";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import axios from "axios"; // Para fazer a requisição HTTP
 
@@ -77,12 +78,19 @@ export default function Cadastro({ navigation }: any) {
       {/*pagamento */}
       <View style={styles.inputContainer}>
         <Text style={styles.label}>Método de pagamento</Text>
-        <TextInput
-          placeholder="Digite o pagamento"
-          style={styles.input}
-          value={pagamento}
-          onChangeText={setPagamento}
-        />
+        <View style={styles.pickerContainer}>
+          <Picker
+            selectedValue={pagamento}
+            style={styles.picker}
+            onValueChange={(itemValue) => setPagamento(itemValue)}
+          >
+            <Picker.Item label="Selecione o método de pagamento" value="" />
+            <Picker.Item label="Pix" value="pix" />
+            <Picker.Item label="Dinheiro" value="dinheiro" />
+            <Picker.Item label="Crédito" value="credito" />
+            <Picker.Item label="Débito" value="debito" />
+          </Picker>
+        </View>
       </View>
 
       {/*botao de avançar para próxima tela*/}
