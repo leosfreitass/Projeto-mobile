@@ -1,6 +1,6 @@
 import * as React from "react";
 import { View, Text, TextInput, Pressable } from "react-native";
-import { styles } from "./cadastroStyle";
+import { maskCpf, maskTelefone, styles } from "./cadastroStyle";
 import { Picker } from "@react-native-picker/picker";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import axios from "axios"; // Para fazer a requisição HTTP
@@ -49,7 +49,8 @@ export default function Cadastro({ navigation }: any) {
           placeholder="Digite o cpf"
           style={styles.input}
           value={cpf}
-          onChangeText={setCpf}
+          onChangeText={(text) => setCpf(maskCpf(text))}
+          maxLength={14}
         />
       </View>
 
@@ -71,7 +72,8 @@ export default function Cadastro({ navigation }: any) {
           placeholder="Digite o telefone"
           style={styles.input}
           value={telefone}
-          onChangeText={setTelefone}
+          onChangeText={(text) =>setTelefone(maskTelefone(text))}
+          maxLength={15}
         />
       </View>
 

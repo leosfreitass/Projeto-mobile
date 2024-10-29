@@ -73,3 +73,32 @@ export const styles = StyleSheet.create({
         color: '#fff',
     }
 });
+
+export const maskCpf =(cpf: string) => {
+    const onlyNumbers = cpf.replace(/\D/g, '');
+
+  if (onlyNumbers.length <= 11) {
+    return onlyNumbers
+      .replace(/(\d{3})(\d)/, '$1.$2') // add o primeiro ponto
+      .replace(/(\d{3})(\d)/, '$1.$2') // add o segundo ponto
+      .replace(/(\d{3})(\d{2})$/, '$1-$2'); // add o hífen
+  }
+
+  return onlyNumbers;
+};
+
+export const maskTelefone = (telefone: string) => {
+    const onlyNumbers = telefone.replace(/\D/g, ''); // remove caracteres não numéricos
+  
+    if (onlyNumbers.length <= 10) {
+      return onlyNumbers
+        .replace(/(\d{2})(\d)/, '($1) $2') // ddd parênteses e espaço
+        .replace(/(\d{5})(\d)/, '$1-$2'); // ddd o hífen
+    } else if (onlyNumbers.length <= 11) {
+      return onlyNumbers
+        .replace(/(\d{2})(\d)/, '($1) $2') // add parênteses e espaço
+        .replace(/(\d{5})(\d{1,4})$/, '$1-$2'); // add o hífen para celular
+    }
+  
+    return onlyNumbers;
+  };
