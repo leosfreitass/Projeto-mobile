@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet,Image } from 'react-native';
 
 export const styles = StyleSheet.create({
   container: {
@@ -20,14 +20,22 @@ export const styles = StyleSheet.create({
     marginVertical: 10, // Adiciona espaço entre as linhas
     marginHorizontal: 5,
     flexDirection: 'row',
+    alignItems:'center',
     borderRadius: 10,
     justifyContent:'center'  
+
+  },
+  icon: {
+    width: 30,
+    height: 30,
+    marginRight: 10, // espaçamento entre o ícone e o texto
+    marginBottom: 5,
 
   },
 
   buttonTextIndex: {
     color: '#fff',
-    marginTop: '50%',
+    fontSize:16
         
   },
 
