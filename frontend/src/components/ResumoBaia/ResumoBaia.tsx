@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import { styles } from './ResumoBaiaStyles';
-import CardBaia from '../CardBaia/CardBaia';
 
 const ResumoBaia = () => {
     

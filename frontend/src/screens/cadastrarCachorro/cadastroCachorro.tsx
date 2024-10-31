@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { View, Text, TextInput, Pressable } from "react-native";
 import { styles } from '../cadastrarTutor/cadastroStyle';
+import axios from "axios"; // Para fazer a requisição HTTP
 
 export default function CadastroCachorro() {
   const [nomeCachorro, setNomeCachorro] = React.useState("");
@@ -17,7 +18,6 @@ export default function CadastroCachorro() {
         age: idadeCachorro,
         extraInfo: info,
       });
-      {/* função para enviar informações para o banco */}
     } 
     catch (error) {
       console.error("Erro ao cadastrar o cachorro:", error);

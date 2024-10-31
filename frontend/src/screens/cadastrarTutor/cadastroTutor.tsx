@@ -99,7 +99,8 @@ export default function Cadastro({ navigation }: any) {
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           style={styles.button}
-          onPress={handleCadastro}>
+          onPress={handleCadastro}
+        >
           <Text style={styles.buttonText}>Avançar</Text>
         </TouchableOpacity>
       </View>

@@ -1,15 +1,12 @@
 import * as React from 'react';
-import { Pressable, View, Text, Image } from "react-native";
+import { View, Text, Image } from "react-native";
 import { styles } from './principalStyles';
-import Cadastro from '../cadastrarTutor/cadastroTutor';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
 export default function Index({ navigation, route }:any) {
     return (
       <View style={styles.container}>
-
-        {/*adicionar imagem nos botões*/}
   
         <View style={styles.buttonContainer}>
           <TouchableOpacity style={styles.buttonIndex}

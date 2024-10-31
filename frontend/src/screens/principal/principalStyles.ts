@@ -9,7 +9,8 @@ export const styles = StyleSheet.create({
 
   
   buttonContainer: {
-    flexDirection: 'row',
+    flexDirection: 'column',
+    alignItems: 'center',
     //marginVertical: 10, // Adiciona espaço entre as linhas
   },
 
@@ -25,6 +26,7 @@ export const styles = StyleSheet.create({
     justifyContent:'center'  
 
   },
+
   icon: {
     width: 30,
     height: 30,
