@@ -6,6 +6,7 @@ import Index from '../../screens/principal/principal';
 import CadastroCachorro from '../../screens/cadastrarCachorro/cadastroCachorro';
 import Disponibilidade from '../../screens/disponibilidade/disponibilidade';
 import { createStackNavigator } from '@react-navigation/stack';
+import Listados from '../../screens/Listados/Listados';
 
 const Drawer = createDrawerNavigator();
 
@@ -26,6 +27,7 @@ export default function MainDrawer() {
       <Drawer.Screen name="Principal" component={Index} />
       <Drawer.Screen name="Cadastro" component={MyStack} />
       <Drawer.Screen name="Disponibilidade" component={Disponibilidade} />
+      <Drawer.Screen name="Listados" component={Listados} />
     </Drawer.Navigator>
   );
 }

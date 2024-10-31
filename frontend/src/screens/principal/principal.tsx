@@ -26,15 +26,16 @@ export default function Index({ navigation, route }:any) {
         </View>
   
         <View style={styles.buttonContainer}>
-          <Pressable style={styles.buttonIndex}>
+          <TouchableOpacity style={styles.buttonIndex}
+          onPress={() =>navigation.navigate('Listados')}>
             <Image source={require('../../../assets/Bullet_List.png')} style={styles.icon} />
-            <Text style={styles.buttonTextIndex}>Cadastrados</Text>
-          </Pressable> 
+            <Text style={styles.buttonTextIndex}>Listados</Text>
+          </TouchableOpacity> 
           
-          <Pressable style={styles.buttonIndex}>
+          <TouchableOpacity style={styles.buttonIndex}>
             <Image source={require('../../../assets/Money Bag.png')} style={styles.icon} />
             <Text style={styles.buttonTextIndex}>Financeiro</Text>
-          </Pressable>
+          </TouchableOpacity>
         </View>
   
       </View>
