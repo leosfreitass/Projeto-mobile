@@ -1,6 +1,11 @@
 import * as React from "react";
-import { View, Text, TextInput, Pressable } from "react-native";
-import { maskCpf, maskTelefone, styles } from "./cadastroStyle";
+import { View, Text, TextInput } from "react-native";
+import {
+  cleanCPF,
+  maskCPF,
+  maskTelefone,
+  styles,
+} from "./cadastroStyle";
 import { Picker } from "@react-native-picker/picker";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import axios from "axios"; // Para fazer a requisição HTTP
@@ -12,25 +17,42 @@ export default function Cadastro({ navigation }: any) {
   const [telefone, setTelefone] = React.useState("");
   const [pagamento, setPagamento] = React.useState("");
 
-  // Função para enviar dados para o backend
+  const axiosInstance = axios.create({
+    baseURL: process.env.EXPO_PUBLIC_BACKEND_URL,
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
   const handleCadastro = async () => {
+    const strippedCPF = cleanCPF(cpf);
+    const ownerData = {
+      name: nome,
+      cpf: strippedCPF,
+      address: endereco,
+      telephoneNumber: telefone,
+      paymentMethod: pagamento,
+    };
+
     try {
-      await axios.post("http://localhost:3000/addOwner", {
-        name: nome,
-        cpf: cpf,
-        address: endereco,
-        telephoneNumber: telefone,
-        paymentMethod: pagamento,
-      });
-      navigation.navigate("Cadastro Cachorro");
+      const { data } = await axiosInstance
+        .post("addOwner", ownerData)
+        .then(function (response) {
+          navigation.navigate("CadastroCachorro", response.data.id);
+
+          return response;
+        });
     } catch (error) {
-      console.error("Erro ao cadastrar o tutor:", error);
+      if (axios.isAxiosError(error)) {
+        return error.response?.data;
+      } else {
+        return { error: error, errorDetails: "Erro desconhecido" };
+      }
     }
   };
 
   return (
     <View style={styles.container}>
-
       {/*nome do tutor */}
       <View style={styles.inputContainer}>
         <Text style={styles.label}>Nome do tutor</Text>
@@ -49,7 +71,8 @@ export default function Cadastro({ navigation }: any) {
           placeholder="Digite o cpf"
           style={styles.input}
           value={cpf}
-          onChangeText={(text) => setCpf(maskCpf(text))}
+          onSubmitEditing={() => setCpf(cleanCPF(cpf))}
+          onChangeText={(text: string) => setCpf(maskCPF(text))}
           maxLength={14}
         />
       </View>
@@ -72,7 +95,7 @@ export default function Cadastro({ navigation }: any) {
           placeholder="Digite o telefone"
           style={styles.input}
           value={telefone}
-          onChangeText={(text) =>setTelefone(maskTelefone(text))}
+          onChangeText={(text) => setTelefone(maskTelefone(text))}
           maxLength={15}
         />
       </View>
@@ -86,11 +109,14 @@ export default function Cadastro({ navigation }: any) {
             style={styles.picker}
             onValueChange={(itemValue) => setPagamento(itemValue)}
           >
-            <Picker.Item label="Selecione o método de pagamento" value="" />
+            <Picker.Item
+              label="Selecione o método de pagamento"
+              value=""
+            />
             <Picker.Item label="Pix" value="pix" />
-            <Picker.Item label="Dinheiro" value="dinheiro" />
-            <Picker.Item label="Crédito" value="credito" />
-            <Picker.Item label="Débito" value="debito" />
+            <Picker.Item label="Dinheiro" value="cash" />
+            <Picker.Item label="Crédito" value="credit" />
+            <Picker.Item label="Débito" value="debit" />
           </Picker>
         </View>
       </View>
