@@ -46,7 +46,7 @@ export const styles = StyleSheet.create({
     },
 
     cardOptions:{
-        marginTop: '-17%', // os botões só ficaram no lugar certo depois que coloquei o sinal negativo
+        marginTop: '-15%', // os botões só ficaram no lugar certo depois que coloquei o sinal negativo
         flexDirection: 'row',
         justifyContent: 'center',
 
