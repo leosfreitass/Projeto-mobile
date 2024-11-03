@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { View, Text, TouchableWithoutFeedback, Animated } from 'react-native';
+import React, { useState } from "react";
+import { View, Text, TouchableWithoutFeedback, Animated } from "react-native";
 
 const CollapsibleView = ({ title, children }: any) => {
   const [collapsed, setCollapsed] = useState(true);
@@ -10,13 +10,13 @@ const CollapsibleView = ({ title, children }: any) => {
       Animated.timing(animation, {
         toValue: 1,
         duration: 300,
-        useNativeDriver: true
+        useNativeDriver: true,
       }).start();
     } else {
       Animated.timing(animation, {
         toValue: 0,
         duration: 300,
-        useNativeDriver: true
+        useNativeDriver: true,
       }).start();
     }
     setCollapsed(!collapsed);
@@ -24,7 +24,7 @@ const CollapsibleView = ({ title, children }: any) => {
 
   const heightInterpolate = animation.interpolate({
     inputRange: [0, 1],
-    outputRange: [0, 200]
+    outputRange: [0, 200],
   });
 
   return (
