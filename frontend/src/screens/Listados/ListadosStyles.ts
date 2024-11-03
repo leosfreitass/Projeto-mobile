@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
   },
   userCard: {
     backgroundColor: '#fff',
-    padding: 15,
+    padding: 20,
     marginVertical: 8,
     borderRadius: 8,
     shadowColor: '#000',
@@ -24,18 +24,27 @@ export const styles = StyleSheet.create({
     elevation: 3,
   },
   userName: {
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: 'bold',
     color: '#333',
+    marginBottom: 10,
+  },
+  userCpf: {
+    fontSize: 16,
+    color: '#555',
+    marginTop: 5,
+  },
+  userPhone: {
+    fontSize: 16,
+    color: '#555',
+    marginTop: 5,
   },
   userEmail: {
     fontSize: 16,
-    color: '#666',
+    color: '#555',
     marginTop: 5,
   },
-  additionalInfo: {
-    fontSize: 14,
-    color: '#888',
-    marginTop: 5,
+  flatListContainer: {
+    paddingBottom: 20,
   },
 });

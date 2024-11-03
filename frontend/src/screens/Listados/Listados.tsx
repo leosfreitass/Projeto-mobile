@@ -1,48 +1,70 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { View, Text, ActivityIndicator, FlatList } from 'react-native';
 import { styles } from './ListadosStyles';
 import CollapsibleView from '../../components/CollapsibleView';
+import axios from 'axios';
 
-interface User {
+interface Owner {
   id: string;
+  cpf: string;
   name: string;
   email: string;
-  additionalInfo: string;
+  telephoneNumber: string; 
+  address: string;
 }
 
 const Listados: React.FC = () => {
-  const [users, setUsers] = useState<User[]>([]);
+  const [owners, setOwners] = useState<Owner[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchUsers = async () => {
-      const mockUsers: User[] = [
-        { id: '1', name: 'Alice Silva', email: 'alice@example.com', additionalInfo: 'Informações adicionais sobre Alice' },
-        { id: '2', name: 'Bruno Costa', email: 'bruno@example.com', additionalInfo: 'Informações adicionais sobre Bruno' },
-        { id: '3', name: 'Carla Nunes', email: 'carla@example.com', additionalInfo: 'Informações adicionais sobre Carla' },
-      ];
-      setUsers(mockUsers);
+    const fetchOwners = async () => {
+      try {
+        const response = await axios.get(`${process.env.EXPO_PUBLIC_BACKEND_URL}/owners`);
+        setOwners(response.data); // Supondo que a resposta seja um array de proprietários
+      } catch (err) {
+        setError("Erro ao carregar os dados.");
+      } finally {
+        setLoading(false);
+      }
     };
 
-    fetchUsers();
-  }, []);
+    fetchOwners()
+  }, [owners]);
 
-  const renderItem = ({ item }: { item: User }) => (
-    <CollapsibleView title={item.name}>
+  const _renderItem = (ownersList: Owner[index]) => (
+    <CollapsibleView style={styles.userCard} title={owners.name}>
       <View style={styles.userCard}>
-        <Text style={styles.userEmail}>Email: {item.email}</Text>
-        <Text style={styles.additionalInfo}>Detalhes: {item.additionalInfo}</Text>
+        <Text style={styles.userEmail}>CPF: {owners.cpf}</Text>
+        <Text style={styles.userEmail}>Endereço: {owners.address}</Text>
+        <Text style={styles.userEmail}>Telefone: {owners.telephoneNumber}</Text>
       </View>
     </CollapsibleView>
   );
+
+  if (loading) {
+    return (
+      <View style={styles.container}>
+        <ActivityIndicator size="large" color="#0000ff" />
+      </View>
+    );
+  }
+
+  if (error) {
+    return (
+      <View style={styles.container}>
+        <Text>{error}</Text>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Usuários Cadastrados</Text>
       <FlatList
-        data={users}
-        keyExtractor={(item) => item.id}
-        renderItem={renderItem}
+        data={owners}
+        renderItem={{ _renderItem }}
       />
     </View>
   );
