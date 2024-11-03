@@ -13,7 +13,7 @@ export default function CadastroCachorro({ route, navigation }: any) {
 
   const instance: AxiosInstance = axios.create({
     params: { ownerId },
-    baseURL: process.env.EXPO_PUBLIC_BACKEND_URL,
+    baseURL: `${process.env.EXPO_PUBLIC_BACKEND_URL}/owner/:owner/`,
   });
 
   // Função para enviar dados para o backend

@@ -4,7 +4,7 @@ import { styles } from './ListadosStyles';
 import CollapsibleView from '../../components/CollapsibleView';
 import axios from 'axios';
 
-interface Owner {
+interface Owner  {
   id: string;
   cpf: string;
   name: string;
@@ -13,35 +13,47 @@ interface Owner {
   address: string;
 }
 
-const Listados: React.FC = () => {
-  const [owners, setOwners] = useState<Owner[]>([]);
+const axiosInstance = axios.create({
+  baseURL: process.env.EXPO_PUBLIC_BACKEND_URL,
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
+
+
+export default function Listados() {
+  const [owners, setOwners] = useState<Owner[]>();
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const fetchOwners = async () => {
-      try {
-        const response = await axios.get(`${process.env.EXPO_PUBLIC_BACKEND_URL}/owners`);
-        setOwners(response.data); // Supondo que a resposta seja um array de proprietários
-      } catch (err) {
-        setError("Erro ao carregar os dados.");
-      } finally {
-        setLoading(false);
+  
+  const fetchData = async () => {
+    try {
+      await axiosInstance.get('/owners').then(function (response) {
+        setOwners(response.data);
+        return response.data;
+      });
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        return error.response?.data;
       }
-    };
-
-    fetchOwners()
-  }, [owners]);
-
-  const _renderItem = (ownersList: Owner[index]) => (
-    <CollapsibleView style={styles.userCard} title={owners.name}>
-      <View style={styles.userCard}>
-        <Text style={styles.userEmail}>CPF: {owners.cpf}</Text>
-        <Text style={styles.userEmail}>Endereço: {owners.address}</Text>
-        <Text style={styles.userEmail}>Telefone: {owners.telephoneNumber}</Text>
-      </View>
-    </CollapsibleView>
-  );
+    }
+  }
+  
+  useEffect(() => {
+    fetchData();
+  }, []);
+  
+  const renderItem = ({item}: {item: Owner}) => {
+    return (
+      <CollapsibleView title={item.name}>
+        <View style={styles.userCard}>
+          <Text style={styles.userEmail}>CPF: {item.cpf}</Text>
+          <Text style={styles.userEmail}>Endereço: {item.address}</Text>
+          <Text style={styles.userEmail}>Telefone: {item.telephoneNumber}</Text>
+        </View>
+      </CollapsibleView>
+    );
+  };
 
   if (loading) {
     return (
@@ -64,10 +76,9 @@ const Listados: React.FC = () => {
       <Text style={styles.title}>Usuários Cadastrados</Text>
       <FlatList
         data={owners}
-        renderItem={{ _renderItem }}
+        keyExtractor={item => item.cpf}
+        renderItem={ renderItem }
       />
     </View>
   );
 };
-
-export default Listados;
