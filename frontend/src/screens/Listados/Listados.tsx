@@ -1,59 +1,36 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text, ActivityIndicator, FlatList } from 'react-native';
-import { styles } from './ListadosStyles';
-import CollapsibleView from '../../components/CollapsibleView';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import { View, Text, ActivityIndicator, FlatList } from "react-native";
+import { styles } from "./ListadosStyles";
+import OwnerCard from "../../components/OwnerCards/OwnerCards";
+import { Owner } from "../../types/owner";
+import axios from "axios";
+import { axiosConfigs } from "../../../configs/axiosConfigs";
 
-interface Owner  {
-  id: string;
-  cpf: string;
-  name: string;
-  email: string;
-  telephoneNumber: string; 
-  address: string;
-}
-
-const axiosInstance = axios.create({
-  baseURL: process.env.EXPO_PUBLIC_BACKEND_URL,
-  headers: {
-    "Content-Type": "application/json",
-  },
-});
-
+const axiosInstance = axios.create(axiosConfigs);
 
 export default function Listados() {
-  const [owners, setOwners] = useState<Owner[]>();
+  const [owners, setOwners] = useState<Owner[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-  
+
   const fetchData = async () => {
     try {
-      await axiosInstance.get('/owners').then(function (response) {
+      await axiosInstance.get("/owners").then(function (response) {
         setOwners(response.data);
-        return response.data;
+        setLoading(false);
       });
     } catch (error) {
       if (axios.isAxiosError(error)) {
+        setLoading(false);
+        setError(error.response?.data);
         return error.response?.data;
       }
     }
-  }
-  
+  };
+
   useEffect(() => {
     fetchData();
   }, []);
-  
-  const renderItem = ({item}: {item: Owner}) => {
-    return (
-      <CollapsibleView title={item.name}>
-        <View style={styles.userCard}>
-          <Text style={styles.userEmail}>CPF: {item.cpf}</Text>
-          <Text style={styles.userEmail}>Endereço: {item.address}</Text>
-          <Text style={styles.userEmail}>Telefone: {item.telephoneNumber}</Text>
-        </View>
-      </CollapsibleView>
-    );
-  };
 
   if (loading) {
     return (
@@ -73,12 +50,14 @@ export default function Listados() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Usuários Cadastrados</Text>
       <FlatList
         data={owners}
-        keyExtractor={item => item.cpf}
-        renderItem={ renderItem }
+        keyExtractor={(item) => item.id}
+        renderItem={OwnerCard}
+        ListHeaderComponent={
+          <Text style={styles.title}>Usuários Cadastrados</Text>
+        }
       />
     </View>
   );
-};
+}

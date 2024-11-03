@@ -8,7 +8,6 @@ import {
 } from "./cadastroStyle";
 import { Picker } from "@react-native-picker/picker";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import axios from "axios"; // Para fazer a requisição HTTP
 
 export default function Cadastro({ navigation }: any) {
   const [nome, setNome] = React.useState("");
@@ -16,13 +15,6 @@ export default function Cadastro({ navigation }: any) {
   const [endereco, setEndereco] = React.useState("");
   const [telefone, setTelefone] = React.useState("");
   const [pagamento, setPagamento] = React.useState("");
-
-  const axiosInstance = axios.create({
-    baseURL: process.env.EXPO_PUBLIC_BACKEND_URL,
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
 
   const handleCadastro = async () => {
     const strippedCPF = cleanCPF(cpf);
