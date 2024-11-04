@@ -1,28 +1,29 @@
-import * as React from "react";
+import { useState, useEffect }  from "react";
 import { View, Text, TextInput, Pressable } from "react-native";
 import { styles } from "../cadastrarTutor/cadastroStyle";
 import axios, { AxiosInstance } from "axios";
 
 export default function CadastroCachorro({ route, navigation }: any) {
-  const [nomeCachorro, setNomeCachorro] = React.useState("");
-  const [raca, setRaca] = React.useState("");
-  const [idadeCachorro, setIdade] = React.useState("");
-  const [info, setInfo] = React.useState("");
+  const [ownerId, setOwnerId] = useState(""); 
+  const [nomeCachorro, setNomeCachorro] = useState("");
+  const [raca, setRaca] = useState("");
+  const [idadeCachorro, setIdade] = useState("");
+  const [info, setInfo] = useState("");
 
-  const { ownerId } = route.params;
+  console.log(route, ownerId);
+  
+  useEffect(() => {
+    setOwnerId(route.params)
 
-  const instance: AxiosInstance = axios.create({
-    params: { ownerId },
-    baseURL: `${process.env.EXPO_PUBLIC_BACKEND_URL}/owner/:owner/`,
-  });
+  },[])
 
   // Função para enviar dados para o backend
   const handleCadastroCachorro = async () => {
     try {
-      await instance.post("addDog", {
+      await axios.post(`${process.env.EXPO_PUBLIC_BACKEND_URL}/owner/` + ownerId + "/addDog", {
         name: nomeCachorro,
         breed: raca,
-        age: idadeCachorro,
+        age: parseInt(idadeCachorro),
         extraInfo: info,
       });
     } catch (error) {
@@ -61,6 +62,7 @@ export default function CadastroCachorro({ route, navigation }: any) {
           placeholder="Digite a idade do cachorro"
           style={styles.input}
           value={idadeCachorro}
+          keyboardType="numeric"
           onChangeText={setIdade}
         />
       </View>

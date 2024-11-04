@@ -59,13 +59,13 @@ export class OwnerController {
   }
 
   @Delete('owner/:id')
-  async deleteOwner(
-    @Param('id', ParseUUIDPipe) id: string,
-  ): Promise<OwnerModel> {
+  @ApiOkResponse({ type: OwnerEntity })
+  async deleteOwner(@Param('id', ParseUUIDPipe) id: string) {
     return this.ownerService.deleteOwner({ id: String(id) });
   }
 
   @Get('owner/:id/dogs')
+  @ApiOkResponse({ type: OwnerEntity })
   async getDogsByOwner(
     @Param('id', ParseUUIDPipe) id: string,
   ): Promise<object> {

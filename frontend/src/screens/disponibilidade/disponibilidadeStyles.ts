@@ -47,10 +47,40 @@ export const styles = StyleSheet.create({
     },
     cardContainer: {
         width: '100%', // Largura do CardBaia no modal
-        marginLeft: '10%'
+        marginLeft: '10%',
         //backgroundColor: 'white',
         //borderRadius: 10,
         //overflow: 'hidden',
     },
+
+    screenOptions:{
+        alignItems:'center',
+    },
+
+    buttonAdicionarBaia:{
+        backgroundColor:'#7C7CF4',
+        alignItems: 'center',
+        height: 40,
+        width: 150,
+        //marginHorizontal:'10%',
+        borderRadius:2,
+        justifyContent: 'center'
+
+    },
+
+    textButtonAddBaia:{
+        //justifyContent: 'center',
+        alignItems: 'center',
+        color: '#fff'
+
+    },
+
+    buttonRemoverBaia:{
+
+    },
+
+    textButtonRemoverBaia:{
+        
+    }
 
 });

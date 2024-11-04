@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { View, Text, Modal, TouchableOpacity } from "react-native";
+import { View, Text, Modal, TouchableOpacity, Pressable, Alert } from "react-native";
 import { styles } from './disponibilidadeStyles';
-import CardBaia from '../../components/CardBaia/CardBaia'
+import CardBaia from '../../components/CardBaia/CardBaia';
 import ResumoBaia from '../../components/ResumoBaia/ResumoBaia';
 
-export default function Disponibilidade(){
-
+export default function Disponibilidade() {
     const [modalVisible, setModalVisible] = React.useState(false);
+    const [baiaCount, setBaiaCount] = React.useState(1); // Estado para controlar o número de ResumoBaia
 
     // Função para abrir o modal
     const abrirModal = () => {
@@ -18,45 +18,71 @@ export default function Disponibilidade(){
         setModalVisible(false);
     };
 
-    return(
+    // Função para adicionar um novo ResumoBaia
+    const adicionarBaia = () => {
+        Alert.alert(
+            "Adicionar Baia",
+            "Você deseja adicionar uma nova baia?",
+            [
+                {
+                    text: "Cancelar",
+                    style: "cancel"
+                },
+                {
+                    text: "Adicionar",
+                    onPress: () => setBaiaCount(prevCount => prevCount + 1)
+                }
+            ],
+            { cancelable: false }
+        );
+    };
+
+    return (
         <View style={styles.container}>
             <View style={styles.descricaoPagina}>
-                <Text style={{ marginTop: '3%', fontSize: 23, fontWeight: 'bold', marginBottom: '2%'}}>Legenda</Text>
+                <Text style={{ marginTop: '3%', fontSize: 23, fontWeight: 'bold', marginBottom: '2%' }}>Legenda</Text>
 
                 <View style={styles.legenda}>
                     <View style={styles.quadradoLegendaDisponivel} />
-                        <Text style={styles.legendaText}>Disponível</Text>
+                    <Text style={styles.legendaText}>Disponível</Text>
                     <View style={styles.quadradoLegendaOcupado} />
-                        <Text style={styles.legendaText}>Ocupada</Text>
+                    <Text style={styles.legendaText}>Ocupada</Text>
                 </View>
             </View>
 
             <View style={styles.baias}>
-                 {/* Quando o usuário tocar em ResumoBaia, o modal abre */}
-                 <TouchableOpacity onPress={abrirModal}>
-                    <ResumoBaia />
-                </TouchableOpacity>
+                {/* Renderizando os ResumoBaia conforme o contador */}
+                {[...Array(baiaCount)].map((_, index) => (
+                    <TouchableOpacity key={index} onPress={abrirModal}>
+                        <ResumoBaia />
+                    </TouchableOpacity>
+                ))}
 
                 {/* Modal para exibir CardBaia */}
                 <Modal
                     visible={modalVisible}
-                    transparent={true} 
+                    transparent={true}
                     animationType="fade"
                     onRequestClose={fecharModal} // Fecha o modal quando o botão de voltar é pressionado 
                 >
-                    {/* View para detectar toques fora do CardBaia */}
-                    <TouchableOpacity 
-                        style={styles.modalBackground} 
-                        activeOpacity={1} 
+                    <TouchableOpacity
+                        style={styles.modalBackground}
+                        activeOpacity={1}
                         onPress={fecharModal}
                     >
-                        {/* Envolva o CardBaia em outra View para que ele não feche ao clicar nele */}
                         <View style={styles.cardContainer}>
                             <CardBaia />
                         </View>
                     </TouchableOpacity>
                 </Modal>
             </View>
-        </View>      
-    )
+
+            {/* Botão para adicionar novo ResumoBaia */}
+            <View style={styles.screenOptions}>
+                <Pressable onPress={adicionarBaia} style={styles.buttonAdicionarBaia}>
+                    <Text style={styles.textButtonAddBaia}>Adicionar Baia</Text>
+                </Pressable>
+            </View>
+        </View>
+    );
 }

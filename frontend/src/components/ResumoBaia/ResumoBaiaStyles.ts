@@ -8,6 +8,7 @@ export const styles = StyleSheet.create({
         backgroundColor:'#D9D9D9',
         borderWidth: 1,
         borderRadius: 4,
+        marginBottom: 10,
     },
 
     resumoBaiaHeader:{

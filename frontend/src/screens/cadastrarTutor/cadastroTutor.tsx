@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useState } from "react";
 import { View, Text, TextInput } from "react-native";
 import {
   cleanCPF,
@@ -8,13 +8,17 @@ import {
 } from "./cadastroStyle";
 import { Picker } from "@react-native-picker/picker";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import axios from "axios";
+import { axiosConfigs } from "../../../configs/axiosConfigs";
 
 export default function Cadastro({ navigation }: any) {
-  const [nome, setNome] = React.useState("");
-  const [cpf, setCpf] = React.useState("");
-  const [endereco, setEndereco] = React.useState("");
-  const [telefone, setTelefone] = React.useState("");
-  const [pagamento, setPagamento] = React.useState("");
+  const [nome, setNome] = useState("");
+  const [cpf, setCpf] = useState("");
+  const [endereco, setEndereco] = useState("");
+  const [telefone, setTelefone] = useState("");
+  const [pagamento, setPagamento] = useState("");
+
+  const axiosInstance = axios.create(axiosConfigs)
 
   const handleCadastro = async () => {
     const strippedCPF = cleanCPF(cpf);
@@ -29,11 +33,7 @@ export default function Cadastro({ navigation }: any) {
     try {
       const { data } = await axiosInstance
         .post("addOwner", ownerData)
-        .then(function (response) {
-          navigation.navigate("CadastroCachorro", response.data.id);
-
-          return response;
-        });
+        navigation.navigate("CadastroCachorro", data.id);
     } catch (error) {
       if (axios.isAxiosError(error)) {
         return error.response?.data;
