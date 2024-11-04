@@ -15,18 +15,18 @@ import { UpdateOwnerDto } from './dto/update-owner.dto';
 import { OwnerEntity } from './entities/owner.entity';
 import { OwnerService } from './owner.service';
 
-@Controller()
+@Controller('owners')
 @ApiTags('Owners')
 export class OwnerController {
   constructor(private readonly ownerService: OwnerService) {}
 
-  @Get('ownerCpf/:cpf')
+  @Get('cpf/:cpf')
   @ApiOkResponse({ type: OwnerEntity })
   async getOwnerByCpf(@Param('cpf') cpf: string): Promise<OwnerModel> {
     return this.ownerService.findOne({ cpf: String(cpf) });
   }
 
-  @Get('owner/:id')
+  @Get(':id')
   @ApiOkResponse({ type: OwnerEntity })
   async getOwnerById(
     @Param('id', ParseUUIDPipe) id: string,
@@ -34,7 +34,7 @@ export class OwnerController {
     return this.ownerService.findOne({ id: String(id) });
   }
 
-  @Get('owners')
+  @Get('all')
   @ApiOkResponse({ type: OwnerEntity, isArray: true })
   async getOwners(): Promise<OwnerModel[]> {
     return this.ownerService.findAll({});
@@ -49,7 +49,7 @@ export class OwnerController {
     return this.ownerService.createOwner(createOwnerDto);
   }
 
-  @Put('owner/:id')
+  @Put(':id')
   @ApiOkResponse({ type: OwnerEntity })
   async updateOwner(
     @Param('id', ParseUUIDPipe) id: string,
@@ -58,24 +58,9 @@ export class OwnerController {
     return this.ownerService.updateOwner(id, updateOwnerDto);
   }
 
-  @Delete('owner/:id')
+  @Delete(':id')
   @ApiOkResponse({ type: OwnerEntity })
   async deleteOwner(@Param('id', ParseUUIDPipe) id: string) {
     return this.ownerService.deleteOwner({ id: String(id) });
-  }
-
-  @Get('owner/:id/dogs')
-  @ApiOkResponse({ type: OwnerEntity })
-  async getDogsByOwner(
-    @Param('id', ParseUUIDPipe) id: string,
-  ): Promise<object> {
-    return this.ownerService.selectFromOwner({
-      where: { id: String(id) },
-      select: {
-        name: true,
-        cpf: true,
-        dogs: true,
-      },
-    });
   }
 }

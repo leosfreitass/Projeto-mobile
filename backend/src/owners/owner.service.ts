@@ -48,12 +48,4 @@ export class OwnerService {
       where,
     });
   }
-
-  async selectFromOwner(params: {
-    where: Prisma.OwnerWhereUniqueInput;
-    select: object;
-  }): Promise<object> {
-    const { where, select } = params;
-    return this.prisma.owner.findUnique({ where, select });
-  }
 }

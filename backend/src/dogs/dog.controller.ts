@@ -8,14 +8,14 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
+import { ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { Dog as DogModel } from '@prisma/client';
 import { DogService } from './dog.service';
 import { CreateDogDto } from './dto/create-dog.dto';
 import { UpdateDogDto } from './dto/update-dog.dto';
-import { ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { DogEntity } from './entities/dog.entity';
 
-@Controller('owner/:ownerId')
+@Controller('owners/:ownerId')
 @ApiTags('Dog')
 export class DogController {
   constructor(private readonly dogService: DogService) {}
@@ -23,17 +23,24 @@ export class DogController {
   @Get('dog/:id')
   @ApiOkResponse({ type: DogEntity })
   async getDogById(@Param('id') id: string): Promise<DogModel> {
-    return this.dogService.findOne({ id: String(id) });
+    return this.dogService.findOne(id);
+  }
+
+  @Get('owner/:ownerId/dogs')
+  @ApiOkResponse({ type: DogEntity, isArray: true })
+  async getDogsByOwner(
+    @Param('ownerId', ParseUUIDPipe) ownerId: string,
+  ): Promise<object> {
+    return this.dogService.findAllByOwner(ownerId);
   }
 
   @Post('addDog')
   @ApiCreatedResponse({ type: DogEntity })
   async createDogInstance(
-    @Param('ownerId') tempOwnerId: string,
+    @Param('ownerId', ParseUUIDPipe) ownerId: string,
     @Body() createDogDto: CreateDogDto,
   ): Promise<DogModel> {
-    createDogDto.ownerId = tempOwnerId;
-    return this.dogService.createDog(createDogDto);
+    return this.dogService.createDog(ownerId, createDogDto);
   }
 
   @Put('dog/:id')
@@ -48,6 +55,6 @@ export class DogController {
   @Delete('dog/:id')
   @ApiOkResponse({ type: DogEntity })
   async deleteDog(@Param('id') id: string): Promise<DogModel> {
-    return this.dogService.deleteDog({ id: String(id) });
+    return this.dogService.deleteDog(id);
   }
 }

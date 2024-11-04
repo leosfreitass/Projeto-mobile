@@ -1,11 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
-import {
-  IsNotEmpty,
-  IsNumber,
-  IsOptional,
-  IsString,
-  IsUUID,
-} from 'class-validator';
+
+import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class CreateDogDto {
   @IsString()
@@ -32,12 +27,7 @@ export class CreateDogDto {
 
   @IsNumber()
   @IsNotEmpty()
+  @IsOptional()
   @ApiProperty()
   locatedAt: number;
-
-  @IsString()
-  @IsNotEmpty()
-  @IsUUID()
-  @ApiProperty()
-  ownerId: string;
 }
