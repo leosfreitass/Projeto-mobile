@@ -1,11 +1,6 @@
 import { useState } from "react";
 import { View, Text, TextInput } from "react-native";
-import {
-  cleanCPF,
-  maskCPF,
-  maskTelefone,
-  styles,
-} from "./cadastroStyle";
+import { cleanCPF, maskCPF, maskTelefone, styles } from "./cadastroStyle";
 import { Picker } from "@react-native-picker/picker";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import axios from "axios";
@@ -18,7 +13,7 @@ export default function Cadastro({ navigation }: any) {
   const [telefone, setTelefone] = useState("");
   const [pagamento, setPagamento] = useState("");
 
-  const axiosInstance = axios.create(axiosConfigs)
+  const axiosInstance = axios.create(axiosConfigs);
 
   const handleCadastro = async () => {
     const strippedCPF = cleanCPF(cpf);
@@ -31,9 +26,8 @@ export default function Cadastro({ navigation }: any) {
     };
 
     try {
-      const { data } = await axiosInstance
-        .post("addOwner", ownerData)
-        navigation.navigate("CadastroCachorro", data.id);
+      const { data } = await axiosInstance.post("owners/new", ownerData);
+      navigation.navigate("CadastroCachorro", data.id);
     } catch (error) {
       if (axios.isAxiosError(error)) {
         return error.response?.data;
@@ -101,10 +95,7 @@ export default function Cadastro({ navigation }: any) {
             style={styles.picker}
             onValueChange={(itemValue) => setPagamento(itemValue)}
           >
-            <Picker.Item
-              label="Selecione o método de pagamento"
-              value=""
-            />
+            <Picker.Item label="Selecione o método de pagamento" value="" />
             <Picker.Item label="Pix" value="pix" />
             <Picker.Item label="Dinheiro" value="cash" />
             <Picker.Item label="Crédito" value="credit" />
@@ -115,10 +106,7 @@ export default function Cadastro({ navigation }: any) {
 
       {/*botao de avançar para próxima tela*/}
       <View style={styles.buttonContainer}>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={handleCadastro}
-        >
+        <TouchableOpacity style={styles.button} onPress={handleCadastro}>
           <Text style={styles.buttonText}>Avançar</Text>
         </TouchableOpacity>
       </View>

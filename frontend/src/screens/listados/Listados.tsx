@@ -15,7 +15,7 @@ export default function Listados() {
 
   const fetchData = async () => {
     try {
-      await axiosInstance.get("/owners").then(function (response) {
+      await axiosInstance.get("/owners/all").then(function (response) {
         setOwners(response.data);
         setLoading(false);
       });

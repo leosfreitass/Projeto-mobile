@@ -6,7 +6,8 @@ import Index from "../../screens/principal/principal";
 import CadastroCachorro from "../../screens/cadastrarCachorro/cadastroCachorro";
 import Disponibilidade from "../../screens/disponibilidade/disponibilidade";
 import { createStackNavigator } from "@react-navigation/stack";
-import Listados from "../../screens/Listados/Listados";
+import Listados from "../../screens/listados/Listados";
+import { NavigationContainer } from "@react-navigation/native";
 
 const Drawer = createDrawerNavigator();
 
@@ -20,24 +21,20 @@ function CadastroStack() {
       screenOptions={{ headerShown: false }}
     >
       <Stack.Screen name="CadastroTutor" component={Cadastro} />
-      <Stack.Screen
-        name="CadastroCachorro"
-        component={CadastroCachorro}
-      />
+      <Stack.Screen name="CadastroCachorro" component={CadastroCachorro} />
     </Stack.Navigator>
   );
 }
 
 export default function MainDrawer() {
   return (
-    <Drawer.Navigator>
-      <Drawer.Screen name="Principal" component={Index} />
-      <Drawer.Screen name="Cadastro" component={CadastroStack} />
-      <Drawer.Screen
-        name="Disponibilidade"
-        component={Disponibilidade}
-      />
-      <Drawer.Screen name="Listados" component={Listados} />
-    </Drawer.Navigator>
+    <NavigationContainer>
+      <Drawer.Navigator>
+        <Drawer.Screen name="Principal" component={Index} />
+        <Drawer.Screen name="Cadastro" component={CadastroStack} />
+        <Drawer.Screen name="Disponibilidade" component={Disponibilidade} />
+        <Drawer.Screen name="Listados" component={Listados} />
+      </Drawer.Navigator>
+    </NavigationContainer>
   );
 }
