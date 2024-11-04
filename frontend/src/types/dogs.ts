@@ -3,5 +3,4 @@ export type Dogs = {
     name: string;
     breed: string;
     age: number;
-    locatedAt: string;
 }
