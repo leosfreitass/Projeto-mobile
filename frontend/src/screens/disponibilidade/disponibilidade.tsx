@@ -54,8 +54,7 @@ export default function Disponibilidade() {
                 {/* Renderizando os ResumoBaia conforme o contador */}
                 {[...Array(baiaCount)].map((_, index) => (
                     <TouchableOpacity key={index} onPress={abrirModal}>
-                        {/* Passando o índice + 1 para mostrar o número correto */}
-                        <ResumoBaia numero={index + 1} />
+                        <ResumoBaia />
                     </TouchableOpacity>
                 ))}
 

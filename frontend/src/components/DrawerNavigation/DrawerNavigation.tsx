@@ -8,6 +8,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import Listados from "../../screens/Listados/Listados";
 import {drawerStyles} from "./DrawerNavigationStyles"
 import CustomDrawerNomeEmpresa from "../CustomDrawerNomeEmpresa/CustomDrawerNomeEmpresa";
+import ListadosCachorros from "../../screens/ListadosCachorros/listadosCachorros";
 
 const Drawer = createDrawerNavigator();
 
@@ -31,11 +32,13 @@ function CadastroStack() {
 export default function MainDrawer() {
   return (
     <Drawer.Navigator
+    drawerContent={(props) => <CustomDrawerNomeEmpresa {...props} />}
     screenOptions={drawerStyles}>
       <Drawer.Screen name="Principal" component={Index} />
       <Drawer.Screen name="Cadastro" component={CadastroStack} />
       <Drawer.Screen name="Disponibilidade" component={Disponibilidade} />
       <Drawer.Screen name="Listados" component={Listados} />
+      <Drawer.Screen name="Listados Cachorro" component={ListadosCachorros} />
     </Drawer.Navigator>
   );
 }

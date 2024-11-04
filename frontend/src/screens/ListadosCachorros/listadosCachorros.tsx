@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, ActivityIndicator, FlatList, TouchableOpacity } from "react-native";
-import { styles } from "./ListadosStyles";
-import OwnerCard from "../../components/OwnerCards/OwnerCards";
-import { Owner } from "../../types/owner";
+import { View, Text, ActivityIndicator, FlatList } from "react-native";
+import { styles } from "./listadosCachorrosStyle";
+import DogsCard from "../../components/DogsCard/DogsCard";
+import { Dogs } from "../../types/dogs";
 import axios from "axios";
 import { axiosConfigs } from "../../../configs/axiosConfigs";
 
 const axiosInstance = axios.create(axiosConfigs);
 
-export default function Listados({navigation}:any) {
-  const [owners, setOwners] = useState<Owner[]>([]);
+export default function ListadosCachorros() {
+  const [dogs, setDogs] = useState<Dogs[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
   const fetchData = async () => {
     try {
-      await axiosInstance.get("/owners").then(function (response) {
-        setOwners(response.data);
+      await axiosInstance.get("/dogs").then(function (response) {
+        setDogs(response.data);
         setLoading(false);
       });
     } catch (error) {
@@ -51,22 +51,13 @@ export default function Listados({navigation}:any) {
   return (
     <View style={styles.container}>
       <FlatList
-        data={owners}
+        data={dogs}
         keyExtractor={(item) => item.id}
-        renderItem={OwnerCard}
+        renderItem={DogsCard}
         ListHeaderComponent={
-          <Text style={styles.title}>Tutores Cadastrados</Text>
+          <Text style={styles.title}>Cachorros Cadastrados</Text>
         }
       />
-
-      <View style={styles.buttonContainerListados}>
-        <TouchableOpacity style={styles.buttonListados}
-        onPress={() =>navigation.navigate('Listados Cachorro')}>
-          <Text style={styles.buttonTextListados}>Ir para cachorros listados</Text>
-        </TouchableOpacity>
-      </View>
     </View>
-
-
   );
 }
