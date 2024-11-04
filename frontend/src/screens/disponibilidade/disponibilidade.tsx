@@ -1,12 +1,12 @@
-import * as React from 'react';
+import { useState } from "react";
 import { View, Text, Modal, TouchableOpacity, Pressable, Alert } from "react-native";
 import { styles } from './disponibilidadeStyles';
 import CardBaia from '../../components/CardBaia/CardBaia';
 import ResumoBaia from '../../components/ResumoBaia/ResumoBaia';
 
 export default function Disponibilidade() {
-    const [modalVisible, setModalVisible] = React.useState(false);
-    const [baiaCount, setBaiaCount] = React.useState(1); // Estado para controlar o número de ResumoBaia
+    const [modalVisible, setModalVisible] = useState(false);
+    const [baiaCount, setBaiaCount] = useState(1); // Estado para controlar o número de ResumoBaia
 
     // Função para abrir o modal
     const abrirModal = () => {
@@ -54,7 +54,8 @@ export default function Disponibilidade() {
                 {/* Renderizando os ResumoBaia conforme o contador */}
                 {[...Array(baiaCount)].map((_, index) => (
                     <TouchableOpacity key={index} onPress={abrirModal}>
-                        <ResumoBaia />
+                        {/* Passando o índice + 1 para mostrar o número correto */}
+                        <ResumoBaia numero={index + 1} />
                     </TouchableOpacity>
                 ))}
 

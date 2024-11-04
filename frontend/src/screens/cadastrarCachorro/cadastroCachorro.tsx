@@ -84,9 +84,8 @@ export default function CadastroCachorro({ route, navigation }: any) {
       <View style={styles.buttonContainer}>
         <Pressable
           style={styles.button}
-          onPress={handleCadastroCachorro}
-        >
-          <Text style={styles.buttonText}>Salvar</Text>
+          onPress={handleCadastroCachorro}>
+            <Text style={styles.buttonText}>Salvar</Text>
         </Pressable>
       </View>
     </View>

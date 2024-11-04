@@ -1,22 +1,21 @@
-import React from 'react';
 import { View, Text } from 'react-native';
 import { styles } from './ResumoBaiaStyles';
 
-const ResumoBaia = () => {
-    
-    return(
+// Recebe a prop numero para exibir no título
+const ResumoBaia = ({ numero }: { numero: number }) => {
+    return (
         <View style={styles.resumoBaiaForma}>
-            {/*titulo card*/}
+            {/* Título do card com o número da baia */}
             <View style={styles.resumoBaiaHeader}>
-                <Text style={styles.resumoBaiaHeaderText}>BAIA x</Text>
+                <Text style={styles.resumoBaiaHeaderText}>BAIA {numero}</Text>
             </View>
 
-            {/*informações resumidas da baia */}
-            <View> 
-                <Text style={styles.tituloBaia}>Cachorro 1</Text>
+            {/* Informações resumidas da baia */}
+            <View>
+                <Text style={styles.tituloBaia}>Cachorro {numero}</Text>
             </View>
         </View>
-    )
-}
+    );
+};
 
 export default ResumoBaia;

@@ -1,5 +1,4 @@
 import "./gesture-handler";
-import * as React from "react";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import Cadastro from "../../screens/cadastrarTutor/cadastroTutor";
 import Index from "../../screens/principal/principal";
@@ -7,21 +6,22 @@ import CadastroCachorro from "../../screens/cadastrarCachorro/cadastroCachorro";
 import Disponibilidade from "../../screens/disponibilidade/disponibilidade";
 import { createStackNavigator } from "@react-navigation/stack";
 import Listados from "../../screens/Listados/Listados";
+import {drawerStyles} from "./DrawerNavigationStyles"
+import CustomDrawerNomeEmpresa from "../CustomDrawerNomeEmpresa/CustomDrawerNomeEmpresa";
 
 const Drawer = createDrawerNavigator();
 
 const Stack = createStackNavigator();
 
 function CadastroStack() {
-  //função para que as telas estejam escondidas no menu hamburguer do Drawer
+  //função para que as telas de cadastrar cachorro esteja escondida no menu hamburguer do Drawer
   return (
     <Stack.Navigator
-      initialRouteName="CadastroTutor"
-      screenOptions={{ headerShown: false }}
-    >
-      <Stack.Screen name="CadastroTutor" component={Cadastro} />
+      initialRouteName="Cadastro Tutor"
+      screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Cadastro Tutor" component={Cadastro} />
       <Stack.Screen
-        name="CadastroCachorro"
+        name="Cadastro Cachorro"
         component={CadastroCachorro}
       />
     </Stack.Navigator>
@@ -30,13 +30,11 @@ function CadastroStack() {
 
 export default function MainDrawer() {
   return (
-    <Drawer.Navigator>
+    <Drawer.Navigator
+    screenOptions={drawerStyles}>
       <Drawer.Screen name="Principal" component={Index} />
       <Drawer.Screen name="Cadastro" component={CadastroStack} />
-      <Drawer.Screen
-        name="Disponibilidade"
-        component={Disponibilidade}
-      />
+      <Drawer.Screen name="Disponibilidade" component={Disponibilidade} />
       <Drawer.Screen name="Listados" component={Listados} />
     </Drawer.Navigator>
   );
