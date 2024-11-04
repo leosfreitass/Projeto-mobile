@@ -4,28 +4,31 @@ import { styles } from "../cadastrarTutor/cadastroStyle";
 import axios, { AxiosInstance } from "axios";
 
 export default function CadastroCachorro({ route, navigation }: any) {
-  const [ownerId, setOwnerId] = useState(""); 
+  const [ownerId, setOwnerId] = useState("");
   const [nomeCachorro, setNomeCachorro] = useState("");
   const [raca, setRaca] = useState("");
   const [idadeCachorro, setIdade] = useState("");
   const [info, setInfo] = useState("");
 
   console.log(route, ownerId);
-  
-  useEffect(() => {
-    setOwnerId(route.params)
 
-  },[])
+  useEffect(() => {
+    setOwnerId(route.params);
+  }, []);
 
   // Função para enviar dados para o backend
   const handleCadastroCachorro = async () => {
     try {
-      await axios.post(`${process.env.EXPO_PUBLIC_BACKEND_URL}/owner/` + ownerId + "/addDog", {
-        name: nomeCachorro,
-        breed: raca,
-        age: parseInt(idadeCachorro),
-        extraInfo: info,
-      });
+      await axios.post(
+        `${process.env.EXPO_PUBLIC_BACKEND_URL}/owner/` + ownerId + "/addDog",
+        {
+          name: nomeCachorro,
+          breed: raca,
+          age: parseInt(idadeCachorro),
+          extraInfo: info,
+          ownerId: ownerId,
+        },
+      );
     } catch (error) {
       console.error("Erro ao cadastrar o cachorro:", error);
     }
@@ -82,6 +85,7 @@ export default function CadastroCachorro({ route, navigation }: any) {
 
       {/* Botão para salvar as informações */}
       <View style={styles.buttonContainer}>
+
         <TouchableOpacity
           style={styles.button}
           onPress={handleCadastroCachorro}>

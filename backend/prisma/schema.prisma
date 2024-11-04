@@ -14,15 +14,16 @@ datasource db {
 }
 
 model Dog {
-  id        String   @id @default(uuid())
-  name      String
-  breed     String
-  age       Int?
-  extraInfo String?
-  locatedAt Int
-  updatedAt DateTime @updatedAt
-  owner     Owner    @relation(fields: [ownerId], references: [id])
-  ownerId   String
+  id          String       @id @default(uuid())
+  name        String
+  breed       String
+  age         Int?
+  extraInfo   String?
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  owner       Owner        @relation(fields: [ownerId], references: [id])
+  ownerId     String
+  Compartment Compartment?
 }
 
 model Owner {
@@ -33,6 +34,16 @@ model Owner {
   address         String
   telephoneNumber String
   paymentMethod   String?
-  updatedAt       DateTime @updatedAt
   dogs            Dog[]
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model Compartment {
+  id         Int      @id @default(autoincrement())
+  isOccupied Boolean  @default(false)
+  dog        Dog?     @relation(fields: [dogId], references: [id])
+  dogId      String?  @unique
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 }

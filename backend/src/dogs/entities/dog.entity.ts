@@ -1,5 +1,6 @@
 import { Dog } from '@prisma/client';
 import { ApiProperty } from '@nestjs/swagger';
+import { OwnerEntity } from 'src/owners/entities/owner.entity';
 
 export class DogEntity implements Dog {
   @ApiProperty()
@@ -21,8 +22,14 @@ export class DogEntity implements Dog {
   locatedAt: number;
 
   @ApiProperty()
-  updatedAt: Date;
+  owner: OwnerEntity;
 
   @ApiProperty()
   ownerId: string;
+
+  @ApiProperty()
+  createdAt: Date;
+
+  @ApiProperty()
+  updatedAt: Date;
 }

@@ -24,6 +24,9 @@ export class OwnerEntity implements Owner {
   paymentMethod: string | null;
 
   @ApiProperty()
+  createdAt: Date;
+
+  @ApiProperty()
   updatedAt: Date;
 
   @ApiProperty()
