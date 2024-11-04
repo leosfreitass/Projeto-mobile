@@ -20,12 +20,6 @@ import { DogEntity } from './entities/dog.entity';
 export class DogController {
   constructor(private readonly dogService: DogService) {}
 
-  @Get('all')
-  @ApiOkResponse({ type: DogEntity, isArray: true })
-  async getAllDogs(): Promise<object> {
-    return this.dogService.findAll();
-  }
-
   @Get(':id')
   @ApiOkResponse({ type: DogEntity })
   async getDogById(@Param('id') id: string): Promise<DogModel> {
