@@ -21,4 +21,26 @@ export const styles = StyleSheet.create({
   flatListContainer: {
     paddingBottom: 20,
   },
+
+  buttonContainerListados:{
+    marginTop: "3%",
+    alignItems: "center",
+  },
+
+    buttonListados: {
+      alignItems: "center", // Centraliza o texto no eixo horizontal
+      justifyContent: "center", // Centraliza o texto no eixo vertical
+      backgroundColor: "#7C7CF4",
+      height: 50,
+      width: 170,
+      borderRadius: 40,
+      //alignSelf: "center", pra que serve isso?
+      margin: 20,
+    },
+
+    buttonTextListados: {
+      color: "#fff",
+
+    }
+  
 });

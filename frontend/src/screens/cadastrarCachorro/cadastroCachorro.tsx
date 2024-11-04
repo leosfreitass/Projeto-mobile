@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { View, Text, TextInput, Pressable } from "react-native";
+import { useState, useEffect }  from "react";
+import { View, Text, TextInput, Pressable, TouchableOpacity } from "react-native";
 import { styles } from "../cadastrarTutor/cadastroStyle";
 import axios, { AxiosInstance } from "axios";
 
@@ -85,9 +85,12 @@ export default function CadastroCachorro({ route, navigation }: any) {
 
       {/* Botão para salvar as informações */}
       <View style={styles.buttonContainer}>
-        <Pressable style={styles.button} onPress={handleCadastroCachorro}>
-          <Text style={styles.buttonText}>Salvar</Text>
-        </Pressable>
+
+        <TouchableOpacity
+          style={styles.button}
+          onPress={handleCadastroCachorro}>
+            <Text style={styles.buttonText}>Salvar</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
