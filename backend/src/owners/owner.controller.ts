@@ -34,13 +34,7 @@ export class OwnerController {
     return this.ownerService.findOne({ id: String(id) });
   }
 
-  @Get('all')
-  @ApiOkResponse({ type: OwnerEntity, isArray: true })
-  async getOwners(): Promise<OwnerModel[]> {
-    return this.ownerService.findAll({});
-  }
-
-  @Post('addOwner')
+  @Post('new')
   @ApiCreatedResponse({ type: OwnerEntity })
   async createOwnerInstance(
     @Body()

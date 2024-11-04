@@ -30,4 +30,6 @@ export class CreateDogDto {
   @IsOptional()
   @ApiProperty()
   locatedAt: number;
+
+  ownerId: string;
 }

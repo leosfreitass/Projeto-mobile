@@ -20,13 +20,8 @@ export class DogService {
     return this.prisma.dog.findMany({ where: { ownerId } });
   }
 
-  async createDog(ownerId: string, data: CreateDogDto): Promise<Dog> {
-    return this.prisma.dog.create({
-      data: {
-        ...data,
-        owner: { connect: { id: ownerId } },
-      },
-    });
+  async createDog(data: CreateDogDto): Promise<Dog> {
+    return this.prisma.dog.create({ data });
   }
 
   async updateDog(id: string, updateDogDto: UpdateDogDto): Promise<Dog> {

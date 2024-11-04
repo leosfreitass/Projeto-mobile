@@ -15,18 +15,18 @@ import { CreateDogDto } from './dto/create-dog.dto';
 import { UpdateDogDto } from './dto/update-dog.dto';
 import { DogEntity } from './entities/dog.entity';
 
-@Controller('owners/:ownerId')
+@Controller('owners/:ownerId/dogs')
 @ApiTags('Dog')
 export class DogController {
   constructor(private readonly dogService: DogService) {}
 
-  @Get('dog/:id')
+  @Get(':id')
   @ApiOkResponse({ type: DogEntity })
   async getDogById(@Param('id') id: string): Promise<DogModel> {
     return this.dogService.findOne(id);
   }
 
-  @Get('owner/:ownerId/dogs')
+  @Get()
   @ApiOkResponse({ type: DogEntity, isArray: true })
   async getDogsByOwner(
     @Param('ownerId', ParseUUIDPipe) ownerId: string,
@@ -34,16 +34,17 @@ export class DogController {
     return this.dogService.findAllByOwner(ownerId);
   }
 
-  @Post('addDog')
+  @Post('new')
   @ApiCreatedResponse({ type: DogEntity })
   async createDogInstance(
     @Param('ownerId', ParseUUIDPipe) ownerId: string,
     @Body() createDogDto: CreateDogDto,
   ): Promise<DogModel> {
-    return this.dogService.createDog(ownerId, createDogDto);
+    createDogDto.ownerId = ownerId;
+    return this.dogService.createDog(createDogDto);
   }
 
-  @Put('dog/:id')
+  @Put(':id')
   @ApiOkResponse({ type: DogEntity })
   async updateDog(
     @Param('id', ParseUUIDPipe) id: string,
@@ -52,7 +53,7 @@ export class DogController {
     return this.dogService.updateDog(id, updateDogDto);
   }
 
-  @Delete('dog/:id')
+  @Delete(':id')
   @ApiOkResponse({ type: DogEntity })
   async deleteDog(@Param('id') id: string): Promise<DogModel> {
     return this.dogService.deleteDog(id);
