@@ -7,5 +7,6 @@ export class CreateCompartmentDto {
   @ApiProperty()
   isOccupied: boolean;
 
+  @ApiProperty()
   dogId: string;
 }

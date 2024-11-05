@@ -26,9 +26,21 @@ export class CompartmentService {
     id: number,
     data: UpdateCompartmentDto,
   ): Promise<Compartment> {
+    if (data.dogId) {
+      return this.prisma.compartment.update({
+        where: { id },
+        data: {
+          ...data,
+          isOccupied: true,
+        },
+      });
+    }
     return this.prisma.compartment.update({
       where: { id },
-      data,
+      data: {
+        ...data,
+        isOccupied: false,
+      },
     });
   }
 
