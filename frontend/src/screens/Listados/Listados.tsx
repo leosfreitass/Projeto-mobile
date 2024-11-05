@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, ActivityIndicator, FlatList, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  ActivityIndicator,
+  FlatList,
+  TouchableOpacity,
+} from "react-native";
 import { styles } from "./ListadosStyles";
 import OwnerCard from "../../components/OwnerCards/OwnerCards";
 import { Owner } from "../../types/owner";
@@ -8,7 +14,7 @@ import { axiosConfigs } from "../../../configs/axiosConfigs";
 
 const axiosInstance = axios.create(axiosConfigs);
 
-export default function Listados({navigation}:any) {
+export default function Listados({ navigation }: any) {
   const [owners, setOwners] = useState<Owner[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -60,13 +66,15 @@ export default function Listados({navigation}:any) {
       />
 
       <View style={styles.buttonContainerListados}>
-        <TouchableOpacity style={styles.buttonListados}
-        onPress={() =>navigation.navigate('Listados Cachorros')}>
-          <Text style={styles.buttonTextListados}>Ir para cachorros listados</Text>
+        <TouchableOpacity
+          style={styles.buttonListados}
+          onPress={() => navigation.navigate("Listados Cachorros")}
+        >
+          <Text style={styles.buttonTextListados}>
+            Ir para cachorros listados
+          </Text>
         </TouchableOpacity>
       </View>
     </View>
-
-
   );
 }

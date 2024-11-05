@@ -27,6 +27,7 @@ export class CompartmentController {
   }
 
   @Get('all')
+  @ApiOkResponse({ type: CompartmentEntity, isArray: true })
   async getAllCompartments(): Promise<Compartment[]> {
     return this.compartmentService.findAll();
   }
@@ -43,9 +44,14 @@ export class CompartmentController {
   @ApiOkResponse({ type: CompartmentEntity })
   async updateCompartment(
     @Param('id', ParseIntPipe) id: number,
-    updateCompartmentDto: UpdateCompartmentDto,
+    @Body() updateCompartmentDto: UpdateCompartmentDto,
   ): Promise<Compartment> {
-    return this.compartmentService.updateCompartment(id, updateCompartmentDto);
+    if (updateCompartmentDto.dogId) {
+      return this.compartmentService.updateCompartment(
+        id,
+        updateCompartmentDto,
+      );
+    }
   }
 
   @Delete(':id/delete')
