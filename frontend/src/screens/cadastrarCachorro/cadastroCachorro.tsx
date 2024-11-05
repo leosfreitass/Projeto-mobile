@@ -1,5 +1,5 @@
 import { useState, useEffect }  from "react";
-import { View, Text, TextInput, Pressable, TouchableOpacity } from "react-native";
+import { View, Text, TextInput, Pressable, TouchableOpacity, Alert } from "react-native";
 import { styles } from "../cadastrarTutor/cadastroStyle";
 import axios from "axios";
 
@@ -25,6 +25,16 @@ export default function CadastroCachorro({ route, navigation }: any) {
           ownerId: ownerId,
         },
       );
+      Alert.alert(
+        "Cadastro realizado!",
+        "As informações foram armazenadas. \nClique fora para sair",
+        [
+
+        ],
+        {
+          cancelable: true,
+        }
+      )
     } catch (error) {
       console.error("Erro ao cadastrar o cachorro:", error);
     }

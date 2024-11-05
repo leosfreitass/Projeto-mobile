@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { View, Text, ActivityIndicator, FlatList } from "react-native";
-import { styles } from "./listadosCachorrosStyle";
+import { styles } from "../Listados/ListadosStyles";
 import DogsCard from "../../components/DogsCard/DogsCard";
 import { Dogs } from "../../types/dogs";
 import axios from "axios";
 import { axiosConfigs } from "../../../configs/axiosConfigs";
 
-const axiosInstance = axios.create(axiosConfigs);
+const axiosInstance = axios.create({...axiosConfigs, url: "/owners/ownersId"});
 
 export default function ListadosCachorros() {
   const [dogs, setDogs] = useState<Dogs[]>([]);
@@ -15,7 +15,7 @@ export default function ListadosCachorros() {
 
   const fetchData = async () => {
     try {
-      await axiosInstance.get("/dogs").then(function (response) {
+      await axiosInstance.get("admin/dogs/all").then(function (response) {
         setDogs(response.data);
         setLoading(false);
       });

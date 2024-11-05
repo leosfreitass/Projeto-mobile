@@ -27,7 +27,7 @@ export default function Cadastro({ navigation }: any) {
 
     try {
       const { data } = await axiosInstance.post("owners/new", ownerData);
-      navigation.navigate("CadastroCachorro", data.id);
+      navigation.navigate("Cadastro Cachorro", data.id);
     } catch (error) {
       if (axios.isAxiosError(error)) {
         return error.response?.data;

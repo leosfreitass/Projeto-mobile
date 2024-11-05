@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
       alignItems:'center',
     },
     textNomeEmpresa: {
-        alignItems:'center',
+
         //paddingTop:10,
         fontSize: 18,
         fontWeight: 'bold',

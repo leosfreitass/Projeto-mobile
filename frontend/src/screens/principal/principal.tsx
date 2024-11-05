@@ -3,7 +3,7 @@ import { styles } from './principalStyles';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
-export default function Index({ navigation, route }:any) {
+export default function Principal({ navigation, route }:any) {
     return (
       <View style={styles.container}>
   
