@@ -19,7 +19,7 @@ export class CreateOwnerDto {
 
   @IsNotEmpty()
   @IsString()
-  @Length(5, 30)
+  @Length(5, 70)
   @ApiProperty()
   name: string;
 
