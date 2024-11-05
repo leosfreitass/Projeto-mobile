@@ -106,4 +106,4 @@ Este aplicativo foi desenvolvido com as seguintes tecnologias:
 
 | Tela | Screenshot |
 | --- | --- |
-| Principal | <img src="pictures/home.jpg" width="200" height="200" /> |
+| Principal | ![Home](pictures/home.jpg) |
