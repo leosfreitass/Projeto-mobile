@@ -60,6 +60,7 @@ export default function Cadastro({ navigation }: any) {
           onSubmitEditing={() => setCpf(cleanCPF(cpf))}
           onChangeText={(text: string) => setCpf(maskCPF(text))}
           maxLength={14}
+          keyboardType="numeric"
         />
       </View>
 
@@ -83,6 +84,7 @@ export default function Cadastro({ navigation }: any) {
           value={telefone}
           onChangeText={(text) => setTelefone(maskTelefone(text))}
           maxLength={15}
+          keyboardType="numeric"
         />
       </View>
 

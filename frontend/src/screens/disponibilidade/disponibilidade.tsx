@@ -65,15 +65,11 @@ export default function Disponibilidade() {
                     animationType="fade"
                     onRequestClose={fecharModal} // Fecha o modal quando o botão de voltar é pressionado 
                 >
-                    <TouchableOpacity
-                        style={styles.modalBackground}
-                        activeOpacity={1}
-                        onPress={fecharModal}
-                    >
+                    <View style={styles.modalBackground}>
                         <View style={styles.cardContainer}>
                             <CardBaia />
                         </View>
-                    </TouchableOpacity>
+                    </View>
                 </Modal>
             </View>
 

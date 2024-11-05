@@ -12,12 +12,8 @@ export const styles = StyleSheet.create({
     marginBottom: 20,
     textAlign: "center",
   },
-  userName: {
-    fontSize: 20,
-    fontWeight: "bold",
-    color: "#333",
-    marginBottom: 10,
-  },
+
+
   flatListContainer: {
     paddingBottom: 20,
   },

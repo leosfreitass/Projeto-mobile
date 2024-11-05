@@ -27,7 +27,7 @@ export default function CadastroCachorro({ route, navigation }: any) {
       );
       Alert.alert(
         "Cadastro realizado!",
-        "As informações foram armazenadas. \nClique fora para sair",
+        "As informações foram armazenadas. \n\nClique fora para sair",
         [
 
         ],

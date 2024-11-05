@@ -63,6 +63,26 @@ export const styles = StyleSheet.create({
     textBaiaOptions:{
         color:'#fff',
         textAlign:'center',
-    }
+    },
 
+    pickerArea:{
+        borderColor: "#000",
+        borderWidth: 1,
+        borderRadius: 3,
+        width: '75%',
+        height: 40,
+        
+    },
+
+    picker:{
+        alignItems:'center',
+        width: "100%",
+    },
+
+    textPicker:{
+        alignItems: 'center',
+        justifyContent:'center',
+
+    },
+    
 })
