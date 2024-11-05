@@ -27,6 +27,8 @@ $ git clone https://github.com/leosfreitass/Projeto-mobile.git
 # Entre no Repositório
 $ cd Projeto-mobile
 ```
+O projeto se divide em duas partes principais, estando o backend localizado na pasta `backend` e o frontend na pasta `frontend`.
+
 ### Estrutura do Projeto
 
 ```
