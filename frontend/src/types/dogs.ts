@@ -3,4 +3,6 @@ export type Dogs = {
     name: string;
     breed: string;
     age: number;
+    extraInfo: string;
+    createdAt: Date;
 }

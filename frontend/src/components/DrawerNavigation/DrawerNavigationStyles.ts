@@ -5,7 +5,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#5E5ED4',
       },
       headerTitulo: {
-        fontWeight: 'bold',
         fontSize: 20,
       },
 
